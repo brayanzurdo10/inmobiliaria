@@ -151,168 +151,12 @@
             </div>
         </div>
     </footer>
+    <script src="properties-data.js"></script>
     <script>
         var urlParams = new URLSearchParams(window.location.search);
         var propertyId = parseInt(urlParams.get('id')) || 0;
 
-        var properties = {
-            0: {
-                title: "Eucalipto - Apartamento Venta Ciudad Verde Soacha",
-                location: "Ciudad Verde, Soacha, Cundinamarca",
-                price: "$130.000.000",
-                images: [
-                    "images/apartamentos/apartamento_0/Sala_1.png",
-                    "images/apartamentos/apartamento_0/Sala_2.png",
-                    "images/apartamentos/apartamento_0/Sala_3.png",
-                    "images/apartamentos/apartamento_0/Sala_4.png",
-                    "images/apartamentos/apartamento_0/Cocina_1.png",
-                    "images/apartamentos/apartamento_0/Cocina_2.png",
-                    "images/apartamentos/apartamento_0/Bano.png",
-                    "images/apartamentos/apartamento_0/Habitacion_principal_1.png",
-                    "images/apartamentos/apartamento_0/Habitacion_principal_2.png",
-                    "images/apartamentos/apartamento_0/Habitacion_princial_3.png",
-                    "images/apartamentos/apartamento_0/Habitacion_principal_4.png",
-                    "images/apartamentos/apartamento_0/Habitacion_secundaria_1.png",
-                    "images/apartamentos/apartamento_0/Habitacion_secundaria_2.png",
-                    "images/apartamentos/apartamento_0/Habitacion_secundaria_3.png",
-                    "images/apartamentos/apartamento_0/Habitacion_secundaria_4.png",
-                    "images/apartamentos/apartamento_0/Zona_comun_1.png",
-                    "images/apartamentos/apartamento_0/Zona_Comun_2.png",
-                    "images/apartamentos/apartamento_0/Zona_comun_parque.png",
-                    "images/apartamentos/apartamento_0/Parqueaderos.png",
-                    "images/apartamentos/apartamento_0/Entrada_torre.png",
-                    "images/apartamentos/apartamento_0/Recepcion_entrada_tienda_comunal.png"
-                ],
-                description: "Hermoso apartamento en venta de 37m2, con vista interior, ubicado en un 5to piso (Torre 1 Apto 502), acceso por escaleras. Consta de 3 habitaciones, 1 bano, sala comedor, cocina integral y zona de lavaderia. Tiene piso ceramico en todas sus zonas.",
-                details: {
-                    building: [
-                        { icon: "building", label: "Conjunto", value: "Eucalipto" },
-                        { icon: "layer-group", label: "Estrato", value: "3" },
-                        { icon: "history", label: "Antiguedad", value: "11 anos" },
-                        { icon: "arrow-up", label: "Piso", value: "5to piso" },
-                        { icon: "stairs", label: "Acceso", value: "Escaleras" }
-                    ],
-                    distribution: [
-                        { icon: "ruler-combined", label: "Area", value: "37 m2" },
-                        { icon: "bed", label: "Habitaciones", value: "3" },
-                        { icon: "bath", label: "Banos", value: "1" },
-                        { icon: "car", label: "Garajes", value: "No tiene" },
-                        { icon: "arrow-up", label: "Ascensores", value: "No tiene" }
-                    ],
-                    features: [
-                        { icon: "home", label: "Tipo", value: "Apartamento" },
-                        { icon: "fire", label: "Gas", value: "Si" },
-                        { icon: "parking", label: "Parqueadero", value: "No" },
-                        { icon: "user-clock", label: "Porteria", value: "24 horas" },
-                        { icon: "tshirt", label: "Lavaderia", value: "Zona de lavaderia" },
-                        { icon: "users", label: "Salon Social", value: "Si" },
-                        { icon: "child", label: "Parque Infantil", value: "Si" },
-                        { icon: "tree", label: "Zonas Verdes", value: "Si" }
-                    ]
-                }
-            },
-            1: {
-                title: "Penthouse Exclusivo con Terraza",
-                location: "Torre Skyline, Piso 25",
-                price: "$450,000",
-                images: [
-                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200",
-                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200",
-                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200",
-                    "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200"
-                ],
-                description: "Increible penthouse con terraza privada, jacuzzi, cocina gourmet y los mejores acabados del mercado.",
-                details: {
-                    building: [
-                        { icon: "building", label: "Conjunto", value: "Skyline Tower" },
-                        { icon: "layer-group", label: "Estrato", value: "5" },
-                        { icon: "history", label: "Antiguedad", value: "5 anos" }
-                    ],
-                    distribution: [
-                        { icon: "ruler-combined", label: "Area", value: "250 m2" },
-                        { icon: "bed", label: "Habitaciones", value: "4" },
-                        { icon: "bath", label: "Banos", value: "3" },
-                        { icon: "car", label: "Garajes", value: "2" },
-                        { icon: "arrow-up", label: "Ascensores", value: "Si" }
-                    ],
-                    features: [
-                        { icon: "home", label: "Tipo", value: "Penthouse" },
-                        { icon: "box", label: "Deposito", value: "Si" },
-                        { icon: "fire", label: "Gas", value: "Si" },
-                        { icon: "parking", label: "Parqueadero", value: "Si" },
-                        { icon: "user-clock", label: "Porteria", value: "24 horas" },
-                        { icon: "tshirt", label: "Lavaderia", value: "Si" }
-                    ]
-                }
-            },
-            2: {
-                title: "Apartamento Familiar Ideal",
-                location: "Residencial Las Flores",
-                price: "$195,000",
-                images: [
-                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200",
-                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200",
-                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200",
-                    "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200"
-                ],
-                description: "Perfecto para familias, cerca de escuelas y parques. Amplios espacios y excelente iluminacion natural.",
-                details: {
-                    building: [
-                        { icon: "building", label: "Conjunto", value: "Las Flores" },
-                        { icon: "layer-group", label: "Estrato", value: "4" },
-                        { icon: "history", label: "Antiguedad", value: "8 anos" },
-                        { icon: "tools", label: "Remodelado", value: "Si" }
-                    ],
-                    distribution: [
-                        { icon: "ruler-combined", label: "Area", value: "95 m2" },
-                        { icon: "bed", label: "Habitaciones", value: "3" },
-                        { icon: "bath", label: "Banos", value: "2" },
-                        { icon: "car", label: "Garajes", value: "1" },
-                        { icon: "arrow-up", label: "Ascensores", value: "Si" }
-                    ],
-                    features: [
-                        { icon: "home", label: "Tipo", value: "Apartamento" },
-                        { icon: "fire", label: "Gas", value: "Si" },
-                        { icon: "parking", label: "Parqueadero", value: "Si" },
-                        { icon: "user-clock", label: "Porteria", value: "12 horas" },
-                        { icon: "tshirt", label: "Lavaderia", value: "Si" }
-                    ]
-                }
-            },
-            3: {
-                title: "Estudio Moderno y Funcional",
-                location: "Urban District",
-                price: "$125,000",
-                images: [
-                    "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200",
-                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200",
-                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200",
-                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200"
-                ],
-                description: "Estudio moderno con diseno inteligente, perfecta distribucion y amenities de lujo.",
-                details: {
-                    building: [
-                        { icon: "building", label: "Conjunto", value: "Urban District" },
-                        { icon: "layer-group", label: "Estrato", value: "3" },
-                        { icon: "history", label: "Antiguedad", value: "2 anos" }
-                    ],
-                    distribution: [
-                        { icon: "ruler-combined", label: "Area", value: "55 m2" },
-                        { icon: "bed", label: "Habitaciones", value: "1" },
-                        { icon: "bath", label: "Banos", value: "1" },
-                        { icon: "car", label: "Garajes", value: "No tiene" },
-                        { icon: "arrow-up", label: "Ascensores", value: "Si" }
-                    ],
-                    features: [
-                        { icon: "home", label: "Tipo", value: "Estudio" },
-                        { icon: "fire", label: "Gas", value: "Si" },
-                        { icon: "parking", label: "Parqueadero", value: "No" },
-                        { icon: "user-clock", label: "Porteria", value: "24 horas" },
-                        { icon: "tshirt", label: "Lavaderia", value: "Si" }
-                    ]
-                }
-            }
-        };
+        // Usar los datos de properties-data.js - la variable 'propertyImages' ya está disponible
 
         var currentLightboxImage = 0;
 
@@ -325,7 +169,7 @@
         }
 
         function loadProperty() {
-            var property = properties[propertyId];
+            var property = propertyImages[propertyId];
             if (!property) {
                 window.location.href = 'index.html';
                 return;
@@ -347,33 +191,103 @@
             document.getElementById('propertyPrice').textContent = property.price;
             document.getElementById('propertyDescription').textContent = property.description;
 
+            // Cargar detalles del edificio
             var buildingDetails = document.getElementById('buildingDetails');
-            property.details.building.forEach(function(item) {
-                buildingDetails.innerHTML += createDetailItem(item);
-            });
+            buildingDetails.innerHTML = '';
+            if (property.details && property.details.building) {
+                var b = property.details.building;
+                Object.keys(b).forEach(function(key) {
+                    if (b[key]) {
+                        var iconMap = {
+                            conjunto: 'building',
+                            estrato: 'layer-group',
+                            antiguedad: 'history',
+                            piso: 'arrow-up',
+                            acceso: 'stairs',
+                            administracion: 'dollar-sign',
+                            remodelado: 'tools'
+                        };
+                        buildingDetails.innerHTML += createDetailItem(iconMap[key] || 'building', capitalizeFirst(key), b[key]);
+                    }
+                });
+            }
 
+            // Cargar distribución
             var distributionDetails = document.getElementById('distributionDetails');
-            property.details.distribution.forEach(function(item) {
-                distributionDetails.innerHTML += createDetailItem(item);
-            });
+            distributionDetails.innerHTML = '';
+            if (property.details && property.details.distribution) {
+                var d = property.details.distribution;
+                Object.keys(d).forEach(function(key) {
+                    if (d[key]) {
+                        var iconMap = {
+                            area: 'ruler-combined',
+                            habitaciones: 'bed',
+                            banos: 'bath',
+                            garajes: 'car',
+                            ascensores: 'arrows-up'
+                        };
+                        distributionDetails.innerHTML += createDetailItem(iconMap[key] || 'ruler-combined', capitalizeFirst(key), d[key]);
+                    }
+                });
+            }
 
+            // Cargar características
             var featuresDetails = document.getElementById('featuresDetails');
-            property.details.features.forEach(function(item) {
-                featuresDetails.innerHTML += createDetailItem(item);
-            });
+            featuresDetails.innerHTML = '';
+            if (property.details && property.details.features) {
+                var f = property.details.features;
+                Object.keys(f).forEach(function(key) {
+                    if (f[key]) {
+                        var iconMap = {
+                            tipo: 'home',
+                            gas: 'fire',
+                            parqueadero: 'parking',
+                            porteria: 'user-clock',
+                            lavanderia: 'tshirt',
+                            salonSocial: 'users',
+                            parqueInfantil: 'child',
+                            zonasVerdes: 'tree',
+                            deposito: 'box'
+                        };
+                        featuresDetails.innerHTML += createDetailItem(iconMap[key] || 'check', capitalizeFirst(key), f[key]);
+                    }
+                });
+            }
 
+            // Cargar tags de características
             var featuresTags = document.getElementById('featuresTags');
-            property.details.features.forEach(function(item) {
-                featuresTags.innerHTML += '<span class="feature-tag"><i class="fas fa-' + item.icon + '"></i> ' + item.value + '</span>';
-            });
+            featuresTags.innerHTML = '';
+            if (property.details && property.details.features) {
+                var f = property.details.features;
+                Object.keys(f).forEach(function(key) {
+                    if (f[key]) {
+                        var iconMap = {
+                            tipo: 'home',
+                            gas: 'fire',
+                            parqueadero: 'parking',
+                            porteria: 'user-clock',
+                            lavanderia: 'tshirt',
+                            salonSocial: 'users',
+                            parqueInfantil: 'child',
+                            zonasVerdes: 'tree',
+                            deposito: 'box'
+                        };
+                        featuresTags.innerHTML += '<span class="feature-tag"><i class="fas fa-' + (iconMap[key] || 'check') + '"></i> ' + f[key] + '</span>';
+                    }
+                });
+            }
         }
 
-        function createDetailItem(item) {
-            return '<div class="detail-item"><i class="fas fa-' + item.icon + '"></i><div><span class="detail-label">' + item.label + '</span><span class="detail-value">' + item.value + '</span></div></div>';
+        function createDetailItem(icon, label, value) {
+            return '<div class="detail-item"><i class="fas fa-' + icon + '"></i><div><span class="detail-label">' + label + '</span><span class="detail-value">' + value + '</span></div></div>';
+        }
+
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
         function selectImage(index) {
-            var property = properties[propertyId];
+            var property = propertyImages[propertyId];
             document.getElementById('mainImage').src = property.images[index];
             
             var thumbnails = document.querySelectorAll('.thumbnail');
@@ -395,7 +309,7 @@
         }
 
         function changeLightboxImage(direction) {
-            var property = properties[propertyId];
+            var property = propertyImages[propertyId];
             currentLightboxImage += direction;
             
             if (currentLightboxImage < 0) {
@@ -408,7 +322,7 @@
         }
 
         function updateLightboxImage() {
-            var property = properties[propertyId];
+            var property = propertyImages[propertyId];
             document.getElementById('lightboxImage').src = property.images[currentLightboxImage];
         }
 

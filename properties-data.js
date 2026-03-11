@@ -1,7 +1,7 @@
 // properties-data.js - Carga datos desde localStorage o usa datos por defecto
 const defaultPropertyImages = {
     0: {
-        title: "Eucalipto - Apartamento Venta Ciudad Verde Soacha",
+        title: "Vinculo - Apartamento Venta Ciudad Verde Soacha",
         location: "Ciudad Verde, Soacha, Cundinamarca",
         price: "$130.000.000",
         badge: "Nuevo",
@@ -36,18 +36,25 @@ const defaultPropertyImages = {
         }
     },
     1: {
-        title: "Penthouse Exclusivo con Terraza",
-        location: "Torre Skyline, Piso 25",
-        price: "$450,000",
-        badge: "Premium",
-        images: ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800"],
-        description: "Increíble penthouse con terraza privada y jacuzzi.",
-        details: {
-            building: { conjunto: "Skyline Tower", estrato: "5", antiguedad: "5 años" },
-            distribution: { area: "250 m2", habitaciones: "4", banos: "3", garajes: "2", ascensores: "Si" },
-            features: { tipo: "Penthouse", gas: "Si", porteria: "24 hrs", lavanderia: "Si" }
-        }
-    },
+    title: "El Triunfo 1 - Apartamento Venta Hogares Soacha",
+    location: "Carrera 38 # 13 - 116 Soacha, Hogares Soacha",
+    price: "$140.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_1/Sala_1.png",
+        "images/apartamentos/apartamento_1/Sala_2.png",
+        "images/apartamentos/apartamento_1/Cocina.png",
+        "images/apartamentos/apartamento_1/Habitacion_1.png",
+        "images/apartamentos/apartamento_1/Habitacion_2.png",
+        "images/apartamentos/apartamento_1/Bano.png"
+    ],
+    description: "Venta de apartamento de 42 m² ubicado en el conjunto residencial El Triunfo 1 en Hogares Soacha. Apartamento en primer piso con espacios amplios, buena iluminación natural, sala-comedor espaciosa, cocina básica y parqueadero comunal por sorteo.",
+    details: {
+        building: { conjunto: "El Triunfo 1", estrato: "3", antiguedad: "N/A", piso: "1er piso", acceso: "Escaleras" },
+        distribution: { area: "42 m²", habitaciones: "2", banos: "1", garajes: "Comunal por sorteo", ascensores: "No tiene" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
+},
     2: {
         title: "Apartamento Familiar Ideal",
         location: "Residencial Las Flores",
@@ -77,6 +84,11 @@ const defaultPropertyImages = {
 };
 
 function getPropertyImages() {
+    // Siempre usar defaultPropertyImages para evitar problemas con localStorage
+    return defaultPropertyImages;
+    
+    // Código original comentado para referencia:
+    /*
     var stored = localStorage.getItem('inmueblespro_properties');
     if (stored) {
         try {
@@ -91,9 +103,17 @@ function getPropertyImages() {
         }
     }
     return defaultPropertyImages;
+    */
 }
 
 var propertyImages = getPropertyImages();
+
+// Función para limpiar cache si es necesario
+function clearPropertyCache() {
+    localStorage.removeItem('inmueblespro_properties');
+    localStorage.removeItem('adminWhatsapp');
+    location.reload();
+}
 
 function getWhatsAppNumber() {
     return localStorage.getItem('adminWhatsapp') || '573114466932';
