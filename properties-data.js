@@ -32,27 +32,43 @@ const defaultPropertyImages = {
         details: {
             building: { conjunto: "Eucalipto", estrato: "3", antiguedad: "11 años", piso: "5to piso", acceso: "Escaleras" },
             distribution: { area: "37 m²", habitaciones: "3", banos: "1", garajes: "No tiene", ascensores: "No tiene" },
-            features: { tipo: "Apartamento", gas: "Sí", parqueadero: "No", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+            features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
         }
     },
     1: {
     title: "El Triunfo 1 - Apartamento Venta Hogares Soacha",
     location: "Carrera 38 # 13 - 116 Soacha, Hogares Soacha",
-    price: "$140.000.000",
+    price: "$130.000.000",
     badge: "Disponible",
     images: [
-        "images/apartamentos/apartamento_1/Sala_1.png",
-        "images/apartamentos/apartamento_1/Sala_2.png",
-        "images/apartamentos/apartamento_1/Cocina.png",
-        "images/apartamentos/apartamento_1/Habitacion_1.png",
-        "images/apartamentos/apartamento_1/Habitacion_2.png",
-        "images/apartamentos/apartamento_1/Bano.png"
+        "images/apartamentos/apartamento_0/Sala_3.png",
+
+"images/apartamentos/apartamento_0/cocina_1.png",
+"images/apartamentos/apartamento_0/cocina_2.png",
+"images/apartamentos/apartamento_0/Entrada_torre.png",
+"images/apartamentos/apartamento_0/Habitacion_princial_3.png",
+"images/apartamentos/apartamento_0/Habitacion_principal_1.png",
+"images/apartamentos/apartamento_0/Habitacion_principal_2.png",
+"images/apartamentos/apartamento_0/Habitacion_principal_4.png",
+"images/apartamentos/apartamento_0/Habitacion_secundaria_1.png",
+"images/apartamentos/apartamento_0/Habitacion_secundaria_2.png",
+"images/apartamentos/apartamento_0/Habitacion_secundaria_3.png",
+"images/apartamentos/apartamento_0/Habitacion_secundaria_4.png",
+"images/apartamentos/apartamento_0/Parqueaderos.png",
+"images/apartamentos/apartamento_0/Recepcion_entrada_tienda_comunal.png",
+"images/apartamentos/apartamento_0/Sala_1.png",
+"images/apartamentos/apartamento_0/Sala_2.png",
+"images/apartamentos/apartamento_0/Bano.png",
+"images/apartamentos/apartamento_0/Sala_4.png",
+"images/apartamentos/apartamento_0/Zona_comun_1.png",
+"images/apartamentos/apartamento_0/Zona_Comun_2.png",
+"images/apartamentos/apartamento_0/Zona_comun_parque.png"
     ],
     description: "Venta de apartamento de 42 m² ubicado en el conjunto residencial El Triunfo 1 en Hogares Soacha. Apartamento en primer piso con espacios amplios, buena iluminación natural, sala-comedor espaciosa, cocina básica y parqueadero comunal por sorteo.",
     details: {
         building: { conjunto: "El Triunfo 1", estrato: "3", antiguedad: "N/A", piso: "1er piso", acceso: "Escaleras" },
         distribution: { area: "42 m²", habitaciones: "2", banos: "1", garajes: "Comunal por sorteo", ascensores: "No tiene" },
-        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
 },
     2: {
