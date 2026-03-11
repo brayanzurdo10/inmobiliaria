@@ -6,9 +6,9 @@ const defaultPropertyImages = {
         price: "$130.000.000",
         badge: "Nuevo",
         images: [
-            "images/apartamentos/apartamento_0/Baño.png",
-"images/apartamentos/apartamento_0/Cocina_1.png",
-"images/apartamentos/apartamento_0/Cocina_2.png",
+            "images/apartamentos/apartamento_0/Bano.png",
+"images/apartamentos/apartamento_0/cocina_1.png",
+"images/apartamentos/apartamento_0/cocina_2.png",
 "images/apartamentos/apartamento_0/Entrada_torre.png",
 "images/apartamentos/apartamento_0/Habitacion_princial_3.png",
 "images/apartamentos/apartamento_0/Habitacion_principal_1.png",
