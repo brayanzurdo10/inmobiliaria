@@ -284,6 +284,10 @@
             font-weight: 600;
         }
 
+        .property-status.reservado {
+            background-color: #e67e22 !important; /* Naranja para Reservado */
+        }
+
         .property-info {
             padding: 25px;
         }
@@ -1067,21 +1071,21 @@
                             <div class="contact-icon"><i class="fas fa-phone"></i></div>
                             <div>
                                 <strong>Teléfono</strong>
-                                <p>+57 300 123 4567</p>
+                                <p>+57 3114466932</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <strong>Email</strong>
-                                <p>contacto@inmueblespro.com</p>
+                                <p>bienesraicesboc@gmail.com </p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
                                 <strong>Dirección</strong>
-                                <p>Av. Principal #123, Bogotá</p>
+                                <p>Av. Principal #13, Bogotá</p>
                             </div>
                         </div>
                     </div>
@@ -1237,8 +1241,7 @@
                 card.innerHTML = `
                     <div class="property-image">
                         <img src="${mainImage}" alt="${title}">
-                        <span class="property-badge">${badge}</span>
-                        <span class="property-status">Disponible</span>
+                        <span class="property-status ${badge === 'Reservado' ? 'reservado' : ''}">${badge}</span>
                     </div>
                     <div class="property-info">
                         <div class="property-price">${price}</div>
@@ -1545,4 +1548,3 @@
     </script>
 </body>
 </html>
-

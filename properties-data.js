@@ -4,7 +4,7 @@ const defaultPropertyImages = {
         title: "Vinculo - Apartamento Venta Ciudad Verde Soacha",
         location: "Ciudad Verde, Soacha, Cundinamarca",
         price: "$130.000.000",
-        badge: "Nuevo",
+        badge: "Disponible",
         images: [
             "images/apartamentos/apartamento_0/Bano.png",
 "images/apartamentos/apartamento_0/cocina_1.png",
@@ -74,8 +74,8 @@ const defaultPropertyImages = {
     2: {
         title: "Apartamento Familiar Ideal",
         location: "Residencial Las Flores",
-        price: "$195,000",
-        badge: "Popular",
+        price: "$210.000.000",
+        badge: "Reservado",
         images: ["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800"],
         description: "Perfecto para familias, cerca de escuelas y parques.",
         details: {
@@ -88,7 +88,7 @@ const defaultPropertyImages = {
         title: "Estudio Moderno y Funcional",
         location: "Urban District",
         price: "$125,000",
-        badge: "Oferta",
+        badge: "Reservado",
         images: ["https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800"],
         description: "Estudio moderno con diseño inteligente.",
         details: {
