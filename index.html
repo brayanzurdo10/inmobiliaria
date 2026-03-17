@@ -1262,6 +1262,18 @@
                     </div>
                 `;
                 grid.appendChild(card);
+
+                // Hacer toda la tarjeta clickeable para detalles
+                card.addEventListener('click', function(e) {
+                    // Prevenir navegación si click en WhatsApp o toggle details
+                    if (e.target.closest('.btn-whatsapp') || e.target.closest('.btn-toggle-details')) {
+                        return;
+                    }
+                    // Navegar a página de detalles usando el índice de la propiedad
+                    window.location.href = `propiedad.html?id=${this.dataset.property}`;
+                });
+                card.style.cursor = 'pointer';
+
             });
         }
 
