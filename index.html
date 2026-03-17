@@ -202,6 +202,202 @@
             border-color: #e74c3c;
         }
 
+        /* Botón filtro en sort-container */
+        .sort-filter-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(231,76,60,0.4);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .sort-filter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(231,76,60,0.6);
+        }
+
+        /* Sort container con filtro integrado */
+        .sort-container {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            min-width: 260px;
+        }
+        .sort-label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .sort-select {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-width: 140px;
+        }
+        .sort-select:focus {
+            outline: none;
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231,76,60,0.1);
+        }
+        @media (max-width: 768px) {
+            .sort-container {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                width: calc(100% - 40px);
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 16px 20px;
+            }
+            .sort-filter-btn {
+                order: 1;
+            }
+            .sort-label {
+                order: 3;
+                font-size: 0.85rem;
+            }
+            .sort-select {
+                order: 2;
+                min-width: 120px;
+            }
+        }
+
+        .filter-panel {
+            position: fixed;
+            left: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: 4px 0 30px rgba(0,0,0,0.15);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+        .filter-panel.active {
+            left: 0;
+        }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .filter-header span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        #filterClose {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        .filter-section label.title {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .filter-options label:hover {
+            background: #f8f9fa;
+        }
+        .filter-options input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #e74c3c;
+        }
+        .range-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .range-group input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .range-group input:focus {
+            border-color: #e74c3c;
+            outline: none;
+        }
+        #applyFilters {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #applyFilters:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .filter-panel {
+                width: 100%;
+                left: -100%;
+            }
+            .filter-toggle {
+                left: 10px;
+            }
+        }
+
         /* Propiedades */
         .properties-section {
             padding: 80px 0;
@@ -962,56 +1158,113 @@
         </div>
     </section>
 
-    <!-- Sección de Búsqueda -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-filters">
-                <div class="filter-group">
-                    <label>Tipo de Propiedad</label>
-                    <select>
-                        <option value="">Todos los tipos</option>
-                        <option value="apartamento">Apartamento</option>
-                        <option value="penthouse">Penthouse</option>
-                        <option value="duplex">Dúplex</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Precio Mínimo</label>
-                    <select>
-                        <option value="">Sin mínimo</option>
-                        <option value="100000">$100,000</option>
-                        <option value="150000">$150,000</option>
-                        <option value="200000">$200,000</option>
-                        <option value="300000">$300,000</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Precio Máximo</label>
-                    <select>
-                        <option value="">Sin máximo</option>
-                        <option value="200000">$200,000</option>
-                        <option value="300000">$300,000</option>
-                        <option value="500000">$500,000</option>
-                        <option value="1000000">$1,000,000</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Habitaciones</label>
-                    <select>
-                        <option value="">Cualquiera</option>
-                        <option value="1">1 Habitación</option>
-                        <option value="2">2 Habitaciones</option>
-                        <option value="3">3 Habitaciones</option>
-                        <option value="4">4+ Habitaciones</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>&nbsp;</label>
-                    <button type="button" class="btn-primary" style="width: 100%;">Buscar</button>
-                </div>
+    <!-- Filtros y Ordenar combinados -->
+    <div class="sort-container">
+        <button id="filterToggle" class="sort-filter-btn" title="Filtros Avanzados">
+            <i class="fas fa-filter"></i>
+        </button>
+        <label for="sortSelect" class="sort-label">Ordenar por:</label>
+        <select id="sortSelect" class="sort-select">
+            <option value="default">Por defecto</option>
+            <option value="precio-asc">Menor Precio</option>
+            <option value="precio-desc">Mayor Precio</option>
+        </select>
+    </div>
+    
+    <div id="filterPanel" class="filter-panel">
+        <div class="filter-header">
+            <span><i class="fas fa-filter"></i> Filtros Avanzados</span>
+            <button id="filterClose">✕</button>
+        </div>
+        
+        <!-- 1. Ubicación -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-map-marker-alt"></i> Ubicación</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="location" value="Soacha"> Soacha</label>
+                <label><input type="checkbox" name="location" value="Bogotá"> Bogotá</label>
             </div>
         </div>
-    </section>
+        
+        <!-- 2. Precio -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-dollar-sign"></i> Precio</label>
+            <div class="range-group">
+                <input type="number" id="priceMin" placeholder="Mín $90M" value="90000000">
+                <span>-</span>
+                <input type="number" id="priceMax" placeholder="Máx $1.5B" value="1500000000">
+            </div>
+        </div>
+        
+        <!-- 3. Habitaciones -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-bed"></i> Habitaciones</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="habitaciones" value="1"> 1</label>
+                <label><input type="checkbox" name="habitaciones" value="2"> 2</label>
+                <label><input type="checkbox" name="habitaciones" value="3"> 3</label>
+                <label><input type="checkbox" name="habitaciones" value="4"> 4+</label>
+            </div>
+        </div>
+        
+        <!-- 4. Baños -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-bath"></i> Baños</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="banos" value="1"> 1</label>
+                <label><input type="checkbox" name="banos" value="2"> 2</label>
+                <label><input type="checkbox" name="banos" value="3"> 3</label>
+                <label><input type="checkbox" name="banos" value="4"> 4</label>
+            </div>
+        </div>
+        
+        <!-- 5. Estrato -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-layer-group"></i> Estrato</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="estrato" value="1"> 1</label>
+                <label><input type="checkbox" name="estrato" value="2"> 2</label>
+                <label><input type="checkbox" name="estrato" value="3"> 3</label>
+                <label><input type="checkbox" name="estrato" value="4"> 4</label>
+                <label><input type="checkbox" name="estrato" value="5"> 5</label>
+                <label><input type="checkbox" name="estrato" value="6"> 6</label>
+            </div>
+        </div>
+        
+        <!-- 6. Área -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-ruler-combined"></i> Área (m²)</label>
+            <div class="range-group">
+                <input type="number" id="areaMin" placeholder="20" value="20">
+                <span>m² -</span>
+                <input type="number" id="areaMax" placeholder="220" value="220">
+                <span>m²</span>
+            </div>
+        </div>
+        
+        <!-- 7. Parqueaderos -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-parking"></i> Parqueaderos</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="parqueaderos" value="-1"> Ninguno</label>
+                <label><input type="checkbox" name="parqueaderos" value="0"> 0</label>
+                <label><input type="checkbox" name="parqueaderos" value="1"> 1</label>
+                <label><input type="checkbox" name="parqueaderos" value="2"> 2</label>
+                <label><input type="checkbox" name="parqueaderos" value="3"> 3+</label>
+            </div>
+        </div>
+        
+        <!-- 8. Ascensores -->
+        <div class="filter-section">
+            <label class="title"><i class="fas fa-arrow-up"></i> Ascensores</label>
+            <div class="filter-options">
+                <label><input type="checkbox" name="ascensores" value="Si"> Con Ascensor</label>
+                <label><input type="checkbox" name="ascensores" value="No"> Sin Ascensor</label>
+            </div>
+        </div>
+        
+        <button id="applyFilters" class="btn-primary">🔍 Aplicar Filtros</button>
+    </div>
 
     <!-- Propiedades -->
     <section class="properties-section" id="propiedades">
@@ -1189,12 +1442,28 @@
         let currentPropertyIndex = 0;
         let currentImageIndex = 0;
 
-        // Función para generar las tarjetas de propiedades dinámicamente
-        function renderProperties() {
+        // Función para generar las tarjetas de propiedades dinámicamente (soporta filtrado)
+        function renderProperties(filteredKeys = Object.keys(propertyImages), sortBy = 'default') {
+            let sortedKeys = [...filteredKeys];
+
+            if (sortBy === 'precio-asc') {
+                sortedKeys.sort((a, b) => {
+                    const priceA = parseFloat(propertyImages[a].price.replace(/[$. ]/g, ''));
+                    const priceB = parseFloat(propertyImages[b].price.replace(/[$. ]/g, ''));
+                    return priceA - priceB;
+                });
+            } else if (sortBy === 'precio-desc') {
+                sortedKeys.sort((a, b) => {
+                    const priceA = parseFloat(propertyImages[a].price.replace(/[$. ]/g, ''));
+                    const priceB = parseFloat(propertyImages[b].price.replace(/[$. ]/g, ''));
+                    return priceB - priceA;
+                });
+            }
+
             const grid = document.getElementById('propertiesGrid');
             grid.innerHTML = '';
 
-            Object.keys(propertyImages).forEach(function(key) {
+            sortedKeys.forEach(function(key) {
                 const prop = propertyImages[key];
                 const index = key;
                 const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600';
@@ -1277,9 +1546,129 @@
             });
         }
 
-        // Inicializar propiedades cuando el DOM esté listo
+        // Filtros state
+        let currentFilters = {
+            location: [],
+            priceMin: 90000000,
+            priceMax: 1500000000,
+            habitaciones: [],
+            banos: [],
+            estrato: [],
+            areaMin: 20,
+            areaMax: 220,
+            parqueaderos: [],
+            ascensores: []
+        };
+
+        // Función matches filter
+        function matchesFilters(prop) {
+            // Location
+            if (currentFilters.location.length > 0) {
+                const loc = prop.location.toLowerCase();
+                if (!currentFilters.location.some(l => loc.includes(l.toLowerCase()))) return false;
+            }
+            
+            // Price
+            const priceNum = parseFloat(prop.price.replace(/[$. ]/g, ''));
+            if (priceNum < currentFilters.priceMin || priceNum > currentFilters.priceMax) return false;
+            
+            // Habitaciones
+            if (currentFilters.habitaciones.length > 0) {
+                const hab = prop.details?.distribution?.habitaciones || '0';
+                if (!currentFilters.habitaciones.includes(hab)) return false;
+            }
+            
+            // Baños
+            if (currentFilters.banos.length > 0) {
+                const banos = prop.details?.distribution?.banos || '0';
+                if (!currentFilters.banos.includes(banos)) return false;
+            }
+            
+            // Estrato
+            if (currentFilters.estrato.length > 0) {
+                const estrato = prop.details?.building?.estrato || '0';
+                if (!currentFilters.estrato.includes(estrato)) return false;
+            }
+            
+            // Área
+            const areaNum = parseFloat((prop.details?.distribution?.area || '0').replace(/[^\d]/g, ''));
+            if (areaNum < currentFilters.areaMin || areaNum > currentFilters.areaMax) return false;
+            
+            // Parqueaderos (map garajes/parqueadero)
+            if (currentFilters.parqueaderos.length > 0) {
+                const parkStr = (prop.details?.distribution?.garajes || prop.details?.features?.parqueadero || '0').toLowerCase();
+                let parkNum = -1;
+                if (parkStr.includes('no') || parkStr.includes('ninguno')) parkNum = -1;
+                else if (parkStr.includes('0') || parkStr.includes('ningún')) parkNum = 0;
+                else if (parkStr.includes('1')) parkNum = 1;
+                else if (parkStr.includes('2')) parkNum = 2;
+                else if (parkStr.includes('3') || parkStr.includes('comunal')) parkNum = 3;
+                if (!currentFilters.parqueaderos.includes(parkNum.toString())) return false;
+            }
+            
+            // Ascensores
+            if (currentFilters.ascensores.length > 0) {
+                const asc = prop.details?.distribution?.ascensores || 'No';
+                const ascVal = asc.toLowerCase().includes('si') ? 'Si' : 'No';
+                if (!currentFilters.ascensores.includes(ascVal)) return false;
+            }
+            
+            return true;
+        }
+
+        // Aplicar filtros
+        function applyFilters(sortBy = document.getElementById('sortSelect')?.value || 'default') {
+            const filteredKeys = Object.keys(propertyImages).filter(key => matchesFilters(propertyImages[key]));
+            renderProperties(filteredKeys, sortBy);
+        }
+
+        // Toggle panel
+        function toggleFilterPanel() {
+            const panel = document.getElementById('filterPanel');
+            const body = document.body;
+            
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                body.style.overflow = 'auto';
+                body.style.paddingLeft = '0';
+            } else {
+                panel.classList.add('active');
+                body.style.overflow = 'hidden';
+                body.style.paddingLeft = '400px';
+            }
+        }
+
+        // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
             renderProperties();
+            
+            // Toggle
+            document.getElementById('filterToggle')?.addEventListener('click', toggleFilterPanel);
+            document.getElementById('filterClose')?.addEventListener('click', toggleFilterPanel);
+            
+            // Apply
+            document.getElementById('applyFilters')?.addEventListener('click', function() {
+                // Read form values
+                currentFilters.priceMin = parseFloat(document.getElementById('priceMin')?.value || 0) * 1000000 || 0;
+                currentFilters.priceMax = parseFloat(document.getElementById('priceMax')?.value || 1500) * 1000000 || 1500000000;
+                currentFilters.areaMin = parseInt(document.getElementById('areaMin')?.value || 20) || 20;
+                currentFilters.areaMax = parseInt(document.getElementById('areaMax')?.value || 220) || 220;
+                
+                // Checkboxes
+                ['location', 'habitaciones', 'banos', 'estrato', 'parqueaderos', 'ascensores'].forEach(name => {
+                    currentFilters[name] = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+                });
+                
+                applyFilters();
+                toggleFilterPanel(); // Close panel
+            });
+
+            // Sort listener
+            document.getElementById('sortSelect')?.addEventListener('change', function() {
+                const sortValue = this.value;
+                const allKeys = Object.keys(propertyImages).filter(key => matchesFilters(propertyImages[key]));
+                renderProperties(allKeys, sortValue);
+            });
         });
 
         // Función para inicializar los botones de detalles
