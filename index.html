@@ -161,23 +161,7 @@
         }
 
         /* Filtros de Búsqueda */
-        .search-section {
-            background-color: #fff;
-            padding: 40px 0;
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-        }
 
-        .search-filters {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
 
         .filter-group label {
             display: block;
@@ -225,36 +209,39 @@
             box-shadow: 0 4px 12px rgba(231,76,60,0.6);
         }
 
-        /* Sort container con filtro integrado */
+        /* Sort container - FIJA debajo header "Inmuebles Pro" */
         .sort-container {
             position: fixed;
-            top: 120px;
-            right: 20px;
-            background: white;
-            border-radius: 12px;
-            padding: 12px 20px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            top: 80px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             z-index: 1001;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 20px;
+            padding: 18px 20px;
             backdrop-filter: blur(10px);
-            min-width: 260px;
         }
         .sort-label {
-            font-weight: 600;
+            font-weight: 700;
             color: #2c3e50;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             white-space: nowrap;
         }
         .sort-select {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 6px 12px;
-            font-size: 0.9rem;
+            background: #fff;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            min-width: 140px;
+            min-width: 200px;
         }
         .sort-select:focus {
             outline: none;
@@ -263,26 +250,25 @@
         }
         @media (max-width: 768px) {
             .sort-container {
-                top: auto;
-                bottom: 20px;
-                right: 20px;
-                left: 20px;
-                width: calc(100% - 40px);
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 8px;
-                padding: 16px 20px;
+                top: 70px;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 12px;
+                padding: 15px 20px;
+            }
+            .sort-label {
+                font-size: 1rem;
+                order: 2;
+                white-space: nowrap;
+            }
+            .sort-select {
+                min-width: 160px;
+                order: 3;
+                flex: 1;
             }
             .sort-filter-btn {
                 order: 1;
-            }
-            .sort-label {
-                order: 3;
-                font-size: 0.85rem;
-            }
-            .sort-select {
-                order: 2;
-                min-width: 120px;
+                flex-shrink: 0;
             }
         }
 
@@ -1159,13 +1145,12 @@
     </section>
 
     <!-- Filtros y Ordenar combinados -->
-    <div class="sort-container">
+    <div class="sort-container" style="justify-content: flex-start; padding-left: 20px;">
         <button id="filterToggle" class="sort-filter-btn" title="Filtros Avanzados">
             <i class="fas fa-filter"></i>
         </button>
-        <label for="sortSelect" class="sort-label">Ordenar por:</label>
         <select id="sortSelect" class="sort-select">
-            <option value="default">Por defecto</option>
+            <option value="" disabled selected style="color: #aaa;">Ordenar Por:</option>
             <option value="precio-asc">Menor Precio</option>
             <option value="precio-desc">Mayor Precio</option>
         </select>
