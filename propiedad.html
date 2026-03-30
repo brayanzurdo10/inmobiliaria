@@ -178,9 +178,22 @@
             var thumbnailsGrid = document.getElementById('thumbnailsGrid');
             property.images.forEach(function(img, index) {
                 var thumb = document.createElement('img');
-                thumb.src = img;
-                thumb.className = 'thumbnail' + (index === 0 ? ' active' : '');
-                thumb.onclick = function() { selectImage(index); };
+if (img.toLowerCase().endsWith('.mp4')) {
+                    var thumb = document.createElement('video');
+                    thumb.src = img;
+                    thumb.className = 'thumbnail' + (index === 0 ? ' active' : '');
+                    thumb.muted = true;
+                    thumb.loop = true;
+                    thumb.playsInline = true;
+                    thumb.onclick = function() { selectImage(index); };
+                    thumb.style.objectFit = 'cover';
+                    thumb.addEventListener('loadeddata', () => { thumb.currentTime = 0.5; thumb.play().catch(() => {}); });
+                } else {
+                    var thumb = document.createElement('img');
+                    thumb.src = img;
+                    thumb.className = 'thumbnail' + (index === 0 ? ' active' : '');
+                    thumb.onclick = function() { selectImage(index); };
+                }
                 thumbnailsGrid.appendChild(thumb);
             });
 
@@ -284,9 +297,39 @@
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
-        function selectImage(index) {
+function selectImage(index) {
             var property = propertyImages[propertyId];
-            document.getElementById('mainImage').src = property.images[index];
+            var mainContainer = document.getElementById('mainImage').parentNode;
+            var currentSrc = property.images[index];
+            
+            // Remove existing media
+            var existingMedia = document.getElementById('mainImage');
+            if (existingMedia) existingMedia.remove();
+            
+            if (currentSrc.toLowerCase().endsWith('.mp4')) {
+                var video = document.createElement('video');
+                video.id = 'mainImage';
+                video.className = 'main-image';
+                video.src = currentSrc;
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.onclick = openLightbox;
+                video.style.objectFit = 'cover';
+                video.style.width = '100%';
+                video.style.height = '100%';
+                video.style.cursor = 'pointer';
+                video.addEventListener('loadeddata', () => video.play().catch(() => {}));
+                mainContainer.appendChild(video);
+            } else {
+                var img = document.createElement('img');
+                img.id = 'mainImage';
+                img.className = 'main-image';
+                img.src = currentSrc;
+                img.alt = 'Imagen principal';
+                img.onclick = openLightbox;
+                mainContainer.appendChild(img);
+            }
             
             var thumbnails = document.querySelectorAll('.thumbnail');
             thumbnails.forEach(function(thumb, i) {
@@ -321,7 +364,34 @@
 
         function updateLightboxImage() {
             var property = propertyImages[propertyId];
-            document.getElementById('lightboxImage').src = property.images[currentLightboxImage];
+            var lightboxContainer = document.querySelector('.lightbox-content');
+            var currentSrc = property.images[currentLightboxImage];
+            
+            // Remove existing media
+            var existingMedia = document.getElementById('lightboxImage');
+            if (existingMedia) existingMedia.remove();
+            
+            if (currentSrc.toLowerCase().endsWith('.mp4')) {
+                var video = document.createElement('video');
+                video.id = 'lightboxImage';
+                video.className = 'lightbox-img';
+                video.src = currentSrc;
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.style.maxWidth = '100%';
+                video.style.maxHeight = '85vh';
+                video.style.borderRadius = '10px';
+                video.addEventListener('loadeddata', () => video.play().catch(() => {}));
+                lightboxContainer.appendChild(video);
+            } else {
+                var img = document.createElement('img');
+                img.id = 'lightboxImage';
+                img.className = 'lightbox-img';
+                img.src = currentSrc;
+                img.alt = 'Imagen';
+                lightboxContainer.appendChild(img);
+            }
         }
 
         document.addEventListener('keydown', function(e) {
