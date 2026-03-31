@@ -127,6 +127,38 @@ const defaultPropertyImages = {
         distribution: { area: "50 m²", habitaciones: "3", banos: "1", garajes: "N/A", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Si", parqueInfantil: "Si", zonasVerdes: "Sí (zona BBQ)" }
     }
+},
+4: {
+    title: "Conjunto Palmeto - Apartamento Venta Ciudad Verde Soacha",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$220.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_4/fachada.jpg",
+        "images/apartamentos/apartamento_4/video.mp4",
+    "images/apartamentos/apartamento_4/Entrada.jpg",
+    "images/apartamentos/apartamento_4/sala_1.jpg",
+    "images/apartamentos/apartamento_4/sala_2.jpg",
+    "images/apartamentos/apartamento_4/sala_3.jpg",
+    "images/apartamentos/apartamento_4/sala_4.jpg",
+    "images/apartamentos/apartamento_4/cocina.jpg",
+    "images/apartamentos/apartamento_4/cocina_1.jpg",
+    "images/apartamentos/apartamento_4/lavadero.jpg",
+    "images/apartamentos/apartamento_4/pasillo.jpg",
+    "images/apartamentos/apartamento_4/habitacion_1.jpg",
+    "images/apartamentos/apartamento_4/habitacion_2.jpg",
+    "images/apartamentos/apartamento_4/habitacion_3.jpg",
+    "images/apartamentos/apartamento_4/bano_1.jpg",
+    "images/apartamentos/apartamento_4/bano_2.jpg",
+    "images/apartamentos/apartamento_4/balcon_1.jpg",
+    "images/apartamentos/apartamento_4/balcon_2.jpg"
+    ],
+    description: "Se vende amplio apartamento de 68 m² en Ciudad Verde, Soacha, Conjunto Palmeto. Ubicado en 2° piso esquinero, con excelente vista, iluminación natural y espacios cómodos. Cuenta con sala-comedor amplia, cocina semi-integral, estudio y acabados en porcelanato. Ideal para quienes buscan comodidad, ubicación estratégica y tranquilidad. Papeles al día, listo para traspaso.",
+    details: {
+        building: { conjunto: "Palmeto", estrato: "3", antiguedad: "N/A", piso: "2° piso", acceso: "Escaleras" },
+        distribution: { area: "68 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
 }
 };
 
