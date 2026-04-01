@@ -214,8 +214,35 @@ const defaultPropertyImages = {
     description: "Se vende apartamento en Ciudad Verde, Conjunto Eucalipto, ubicado en primer piso. Cuenta con 3 alcobas, sala, comedor, cocina integral y baño. Tiene excelentes acabados, se encuentra en muy buen estado y listo para habitar. Ideal para quienes buscan comodidad, fácil acceso y una excelente ubicación.",
     details: {
         building: { conjunto: "Eucalipto", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
-        distribution: { area: "N/A", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
+        distribution: { area: "40 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "No especificado", zonasVerdes: "Sí" }
+    }
+},
+7:{
+    title: "Apartamento en Jardín Maiporé - 1er Piso Venta Soacha",
+    location: "Jardín Maiporé, Soacha, Cundinamarca",
+    price: "$149.990.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_7/sala_1.jpeg",
+        "images/apartamentos/apartamento_7/sala_2.jpeg",
+        "images/apartamentos/apartamento_7/sala_3.jpeg",
+
+        "images/apartamentos/apartamento_7/cocina_1.jpeg",
+        "images/apartamentos/apartamento_7/lavado.jpeg",
+
+        "images/apartamentos/apartamento_7/habitacion_1.jpeg",
+        "images/apartamentos/apartamento_7/habitacion_2.jpeg",
+
+        "images/apartamentos/apartamento_7/bano.jpeg",
+        "images/apartamentos/apartamento_7/bano_2.png",
+        "images/apartamentos/apartamento_7/video.mp4"
+    ],
+    description: "🏠 ¡Gran oportunidad! Se vende o se cede deuda apartamento en Jardín Maiporé, Soacha. Ubicado en primer piso, cuenta con 47 m² totalmente terminados, excelente iluminación y distribución funcional. Dispone de 2 habitaciones amplias y espacio adaptable para segundo baño privado o walk-in closet. Incluye cocina equipada, calentador a gas y zona de lavandería independiente. Ubicación estratégica cerca a Autopista Sur, centros comerciales y supermercados. Ideal para vivir o invertir.",
+    details: {
+        building: { conjunto: "Jardín Maiporé Torre 17", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
+        distribution: { area: "47 m²", habitaciones: "2", banos: "1 (opción segundo)", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", gimnasio: "Biosaludable" }
     }
 }
 };
