@@ -188,6 +188,35 @@ const defaultPropertyImages = {
         distribution: { area: "93 m² aprox", habitaciones: "4", banos: "2", garajes: "Comunal", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
+},
+6:{
+    title: "Apartamento en Ciudad Verde - Conjunto Eucalipto Primer Piso",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$140.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_6/cocina_1.jpeg",
+        "images/apartamentos/apartamento_6/entrada_1.jpeg",
+        "images/apartamentos/apartamento_6/entrada_2.jpeg",
+        
+        "images/apartamentos/apartamento_6/cocina_2.jpeg",
+        "images/apartamentos/apartamento_6/cocina_3.jpeg",
+        "images/apartamentos/apartamento_6/cocina_4.jpeg",
+        "images/apartamentos/apartamento_6/pasillo_1.jpeg",
+        "images/apartamentos/apartamento_6/pasillo_2.jpg",
+        "images/apartamentos/apartamento_6/habitacion_1.jpeg",
+        "images/apartamentos/apartamento_6/habitacion_2.jpeg",
+        "images/apartamentos/apartamento_6/habitacion_3.jpeg",
+        "images/apartamentos/apartamento_6/habitacion_4.jpeg",
+        "images/apartamentos/apartamento_6/bano_1.jpg",
+        "images/apartamentos/apartamento_6/bano_2.jpg"
+    ],
+    description: "Se vende apartamento en Ciudad Verde, Conjunto Eucalipto, ubicado en primer piso. Cuenta con 3 alcobas, sala, comedor, cocina integral y baño. Tiene excelentes acabados, se encuentra en muy buen estado y listo para habitar. Ideal para quienes buscan comodidad, fácil acceso y una excelente ubicación.",
+    details: {
+        building: { conjunto: "Eucalipto", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
+        distribution: { area: "N/A", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "No especificado", zonasVerdes: "Sí" }
+    }
 }
 };
 
