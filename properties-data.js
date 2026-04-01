@@ -159,6 +159,35 @@ const defaultPropertyImages = {
         distribution: { area: "68 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
+},
+5:{
+    title: "Casa en Parque Campestre - Casa en Venta 3 Pisos Soacha",
+    location: "Parque Campestre, Soacha, Cundinamarca",
+    price: "$170.000.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_5/Entrada.jpg",
+
+        "images/apartamentos/apartamento_5/sala_1.png",
+        "images/apartamentos/apartamento_5/sala_2.jpg",
+
+        "images/apartamentos/apartamento_5/cocina.png",
+        "images/apartamentos/apartamento_5/patio.png",
+
+        "images/apartamentos/apartamento_5/habitacion_1.png",
+        "images/apartamentos/apartamento_5/habitacion_2.png",
+        "images/apartamentos/apartamento_5/habitacion_3.png",
+        "images/apartamentos/apartamento_5/habitacion_4.jpg",
+
+        "images/apartamentos/apartamento_5/bano_1.png",
+        "images/apartamentos/apartamento_5/bano_2.png"
+    ],
+    description: "Se vende amplia casa de 3 pisos en Parque Campestre, Soacha. Cuenta con aproximadamente 93 m² construidos, excelente distribución y espacios cómodos. Dispone de 4 habitaciones (una con baño privado), sala-comedor, cocina, patio y buena iluminación natural. Ideal para familias que buscan amplitud, comodidad y tranquilidad. Precio negociable.",
+    details: {
+        building: { conjunto: "Parque Campestre", estrato: "3", antiguedad: "15 años", piso: "Casa de 3 pisos", acceso: "Escaleras" },
+        distribution: { area: "93 m² aprox", habitaciones: "4", banos: "2", garajes: "Comunal", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
 }
 };
 
