@@ -244,6 +244,34 @@ const defaultPropertyImages = {
         distribution: { area: "47 m²", habitaciones: "2", banos: "1 (opción segundo)", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", gimnasio: "Biosaludable" }
     }
+},
+8:{
+    title: "Apartamento en Torres del Camino 1 - 1er Piso Venta Soacha",
+    location: "Torres del Camino 1, Soacha, Cundinamarca",
+    price: "Consultar",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_8/porteria.jpg",
+        "images/apartamentos/apartamento_8/complejo.jpg",
+        "images/apartamentos/apartamento_8/complejo_2.jpg",
+    
+        "images/apartamentos/apartamento_8/sala.jpg",
+        "images/apartamentos/apartamento_8/cocina.jpg",
+        "images/apartamentos/apartamento_8/pasillo.jpg",
+
+        "images/apartamentos/apartamento_8/habitacion_1.jpg",
+        "images/apartamentos/apartamento_8/habitacion_2.jpg",
+        "images/apartamentos/apartamento_8/habitacion_3.jpg",
+
+        "images/apartamentos/apartamento_8/bano_1.jpg",
+        "images/apartamentos/apartamento_8/bano_2.jpg"
+    ],
+    description: "🏠 Torres del Camino 1 – Ubicación estratégica en Soacha. Se vende apartamento en primer piso con 53 m², ideal para familias, adultos mayores o quienes buscan fácil acceso. Cuenta con 3 habitaciones, 2 baños, sala-comedor amplia, cocina funcional, zona de lavado independiente y espacio para estudio o home office. Ubicado en conjunto residencial con zonas verdes, BBQ, salón social y cicloparqueadero. Ambiente tranquilo, interior y con excelente iluminación natural. Cerca de avenidas principales, transporte público, centros comerciales, colegios, estación de policía y zonas recreativas.",
+    details: {
+        building: { conjunto: "Torres del Camino 1", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
+        distribution: { area: "53 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", bbq: "Sí", cicloparqueadero: "Sí" }
+    }
 }
 };
 
