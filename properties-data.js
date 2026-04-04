@@ -1,40 +1,6 @@
 // properties-data.js - Carga datos desde localStorage o usa datos por defecto
 const defaultPropertyImages = {
-    0: {
-        title: "Vinculo - Apartamento Venta Ciudad Verde Soacha",
-        location: "Ciudad Verde, Soacha, Cundinamarca",
-        price: "$130.000.000",
-        badge: "Disponible",
-        images: [
-            "images/apartamentos/apartamento_0/Bano.png",
-"images/apartamentos/apartamento_0/cocina_1.png",
-"images/apartamentos/apartamento_0/cocina_2.png",
-"images/apartamentos/apartamento_0/Entrada_torre.png",
-"images/apartamentos/apartamento_0/Habitacion_princial_3.png",
-"images/apartamentos/apartamento_0/Habitacion_principal_1.png",
-"images/apartamentos/apartamento_0/Habitacion_principal_2.png",
-"images/apartamentos/apartamento_0/Habitacion_principal_4.png",
-"images/apartamentos/apartamento_0/Habitacion_secundaria_1.png",
-"images/apartamentos/apartamento_0/Habitacion_secundaria_2.png",
-"images/apartamentos/apartamento_0/Habitacion_secundaria_3.png",
-"images/apartamentos/apartamento_0/Habitacion_secundaria_4.png",
-"images/apartamentos/apartamento_0/Parqueaderos.png",
-"images/apartamentos/apartamento_0/Recepcion_entrada_tienda_comunal.png",
-"images/apartamentos/apartamento_0/Sala_1.png",
-"images/apartamentos/apartamento_0/Sala_2.png",
-"images/apartamentos/apartamento_0/Sala_3.png",
-"images/apartamentos/apartamento_0/Sala_4.png",
-"images/apartamentos/apartamento_0/Zona_comun_1.png",
-"images/apartamentos/apartamento_0/Zona_Comun_2.png",
-"images/apartamentos/apartamento_0/Zona_comun_parque.png"
-        ],
-        description: "Hermoso apartamento en venta de 37m2, con vista interior, ubicado en un 5to piso.",
-        details: {
-            building: { conjunto: "Eucalipto", estrato: "3", antiguedad: "11 años", piso: "5to piso", acceso: "Escaleras" },
-            distribution: { area: "37 m²", habitaciones: "3", banos: "1", garajes: "No tiene", ascensores: "No tiene" },
-            features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-        }
-    },
+    
     1: {
     title: "El Triunfo 1 - Apartamento Venta Hogares Soacha",
     location: "Carrera 38 # 13 - 116 Soacha, Hogares Soacha",
@@ -75,7 +41,7 @@ const defaultPropertyImages = {
     title: "Ciudad Verde - Apartamento Amoblado en Venta Soacha",
     location: "Ciudad Verde, Soacha, Cundinamarca",
     price: "$185.000.000",
-    badge: "Disponible",
+    badge: "Reservado",
     images: [
         "images/apartamentos/apartamento_2/bano_1.jpg",
         "images/apartamentos/apartamento_2/bano_2.mp4",
