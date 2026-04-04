@@ -248,7 +248,7 @@ const defaultPropertyImages = {
 8:{
     title: "Apartamento en Torres del Camino 1 - 1er Piso Venta Soacha",
     location: "Torres del Camino 1, Soacha, Cundinamarca",
-    price: "Consultar",
+    price: "$160.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_8/porteria.jpg",
