@@ -68,6 +68,28 @@
         .lightbox-nav:hover { background-color: #e74c3c; }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
+
+        /* INFO TOP BLOCK */
+        .info-top-block {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 24px 18px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid #e74c3c;
+        }
+        .info-top-subtitle { font-size: 13px; color: #8C8C8C; margin-bottom: 4px; }
+        .info-top-title { font-size: 1.8rem; color: #2c3e50; margin-bottom: 10px; font-weight: 700; }
+        .info-top-location { font-size: 0.95rem; color: #7f8c8d; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .info-top-old-price { font-size: 13px; color: #8C8C8C; margin-bottom: 2px; font-weight: 500; }
+        .info-top-price-label { font-size: 12px; color: #8C8C8C; margin-bottom: 6px; }
+        .info-top-price-row { display: flex; justify-content: space-between; align-items: center; }
+        .info-top-mapa-btn {
+            background: transparent; border: 1.5px solid #e74c3c; color: #e74c3c;
+            padding: 8px 18px; border-radius: 25px; font-size: 13px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.2s;
+        }
+        .info-top-mapa-btn:hover { background: #e74c3c; color: #fff; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -88,6 +110,24 @@
     </header>
     <main class="main-content">
         <div class="container">
+            <div class="info-top-block">
+                <div class="info-top-subtitle">Venta de apartamento</div>
+                <h1 class="info-top-title" id="propertyTitle"></h1>
+                <p class="info-top-location">
+                    <i class="fas fa-map-marker-alt" style="color:#e74c3c;"></i>
+                    <span id="propertyLocation"></span>
+                </p>
+                <div class="info-top-old-price">
+                    <span>Antes </span><span id="propertyOldPrice" style="text-decoration:line-through;color:#8C8C8C;"></span>
+                </div>
+                <div class="info-top-price-label">Precio total (COP)</div>
+                <div class="info-top-price-row">
+                    <div class="property-price" id="propertyPrice"></div>
+                    <button class="info-top-mapa-btn" onclick="window.open('https://maps.google.com/?q='+document.getElementById('propertyLocation').textContent)">
+                        <i class="fas fa-map-marker-alt"></i> Mapa
+                    </button>
+                </div>
+            </div>
             <section class="gallery-section">
                 <div class="main-image-container">
                     <img id="mainImage" class="main-image" src="" alt="Imagen principal" onclick="openLightbox()">
@@ -97,9 +137,6 @@
             <div class="property-info">
                 <div class="property-details-card">
                     <div class="property-header">
-                        <h1 class="property-title" id="propertyTitle"></h1>
-                        <p class="property-location"><i class="fas fa-map-marker-alt"></i> <span id="propertyLocation"></span></p>
-                        <div class="property-price" id="propertyPrice"></div>
                     </div>
                     <h3 class="section-title">Descripcion General</h3>
                     <p class="description-text" id="propertyDescription"></p>
@@ -200,6 +237,11 @@ if (img.toLowerCase().endsWith('.mp4')) {
             document.getElementById('propertyTitle').textContent = property.title;
             document.getElementById('propertyLocation').textContent = property.location;
             document.getElementById('propertyPrice').textContent = property.price;
+            var oldPriceEl = document.getElementById('propertyOldPrice');
+            if (oldPriceEl) {
+                oldPriceEl.textContent = property.oldPrice || '';
+                oldPriceEl.parentElement.style.display = property.oldPrice ? 'block' : 'none';
+            }
             document.getElementById('propertyDescription').textContent = property.description;
 
             // Cargar detalles del edificio

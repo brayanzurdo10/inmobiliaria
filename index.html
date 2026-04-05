@@ -454,6 +454,15 @@
             font-weight: 600;
         }
 
+        .discount-badge {
+            position: absolute; bottom: 14px; right: 14px;
+            background-color: #F57C00; color: white;
+            padding: 6px 12px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .old-price { display: block; font-size: 0.85rem; color: #8C8C8C; margin-bottom: 2px; }
+        .old-price s { text-decoration: line-through; }
         .property-status {
             position: absolute;
             top: 20px;
@@ -1454,6 +1463,9 @@
                 const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600';
                 const badge = prop.badge || 'Nuevo';
                 const price = prop.price || '';
+                const oldPrice = prop.oldPrice || '';
+                const discountBadge = oldPrice ? `<span class="discount-badge">3%</span>` : '';
+                const oldPriceHtml = oldPrice ? `<span class="old-price">Antes <s>${oldPrice}</s></span>` : '';
                 const title = prop.title || '';
                 const location = prop.location || '';
                 const description = prop.description || '';
@@ -1496,8 +1508,10 @@
                     <div class="property-image">
                         <img src="${mainImage}" alt="${title}">
                         <span class="property-status ${badge === 'Reservado' ? 'reservado' : ''}">${badge}</span>
+                        ${discountBadge}
                     </div>
                     <div class="property-info">
+                        ${oldPriceHtml}
                         <div class="property-price">${price}</div>
                         <h3 class="property-title">${title}</h3>
                         <p class="property-location"><i class="fas fa-map-marker-alt"></i> ${location}</p>

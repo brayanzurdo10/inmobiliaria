@@ -5,6 +5,7 @@ const defaultPropertyImages = {
     title: "El Triunfo 1 - Apartamento Venta Hogares Soacha",
     location: "Carrera 38 # 13 - 116 Soacha, Hogares Soacha",
     price: "$130.000.000",
+    oldPrice: "$134.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_0/Sala_3.png",
@@ -41,6 +42,7 @@ const defaultPropertyImages = {
     title: "Ciudad Verde - Apartamento Amoblado en Venta Soacha",
     location: "Ciudad Verde, Soacha, Cundinamarca",
     price: "$185.000.000",
+    oldPrice: "$191.000.000",
     badge: "Reservado",
     images: [
         "images/apartamentos/apartamento_2/bano_1.jpg",
@@ -70,6 +72,7 @@ const defaultPropertyImages = {
     title: "Ciudad Verde - Apartamento Venta Soacha",
     location: "Ciudad Verde, Soacha, Cundinamarca",
     price: "$149.500.000",
+    oldPrice: "$154.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_3/bano_1.jpg",
@@ -98,6 +101,7 @@ const defaultPropertyImages = {
     title: "Conjunto Palmeto - Apartamento Venta Ciudad Verde Soacha",
     location: "Ciudad Verde, Soacha, Cundinamarca",
     price: "$220.000.000",
+    oldPrice: "$227.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_4/fachada.jpg",
@@ -130,6 +134,7 @@ const defaultPropertyImages = {
     title: "Casa en Parque Campestre - Casa en Venta 3 Pisos Soacha",
     location: "Parque Campestre, Soacha, Cundinamarca",
     price: "$170.000.000",
+    oldPrice: "$175.000.000",
     badge: "Negociable",
     images: [
         "images/apartamentos/apartamento_5/Entrada.jpg",
@@ -159,6 +164,7 @@ const defaultPropertyImages = {
     title: "Apartamento en Ciudad Verde - Conjunto Eucalipto Primer Piso",
     location: "Ciudad Verde, Soacha, Cundinamarca",
     price: "$140.000.000",
+    oldPrice: "$144.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_6/cocina_1.jpeg",
@@ -188,6 +194,7 @@ const defaultPropertyImages = {
     title: "Apartamento en Jardín Maiporé - 1er Piso Venta Soacha",
     location: "Jardín Maiporé, Soacha, Cundinamarca",
     price: "$149.990.000",
+    oldPrice: "$154.000.000",
     badge: "Negociable",
     images: [
         "images/apartamentos/apartamento_7/sala_1.jpeg",
@@ -215,6 +222,7 @@ const defaultPropertyImages = {
     title: "Apartamento en Torres del Camino 1 - 1er Piso Venta Soacha",
     location: "Torres del Camino 1, Soacha, Cundinamarca",
     price: "$160.000.000",
+    oldPrice: "$165.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_8/porteria.jpg",
