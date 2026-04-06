@@ -250,7 +250,7 @@ const defaultPropertyImages = {
 9:{
     title: "Apartamento en La Grandeza 4 - Hogares de Soacha Piso 6",
     location: "Hogares de Soacha, Soacha, Cundinamarca",
-    price: "Consultar",
+    price: "157.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_9/porteria.jpg",
@@ -280,6 +280,35 @@ const defaultPropertyImages = {
         building: { conjunto: "La Grandeza 4", estrato: "3", antiguedad: "N/A", piso: "6° piso", acceso: "Escaleras" },
         distribution: { area: "50 m²", habitaciones: "3", banos: "2", garajes: "Por sorteo", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Zona de lavandería", salonSocial: "Si", parqueInfantil: "Si", zonasVerdes: "Sí" }
+    }
+},
+10:{
+    title: "Apartamento en Aliso 1 - Venta Soacha piso 2",
+    location: "Calle 15 #20-276, Soacha, Cundinamarca",
+    price: "$150.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_10/sala_1.jpeg",
+        "images/apartamentos/apartamento_10/sala_2.jpeg",
+
+        "images/apartamentos/apartamento_10/cocina.jpg",
+        "images/apartamentos/apartamento_10/lavadero.jpg",
+
+        "images/apartamentos/apartamento_10/habitacion_1.jpeg",
+        "images/apartamentos/apartamento_10/habitacion_2.jpeg",
+        "images/apartamentos/apartamento_10/habitacion_3.jpeg",
+        "images/apartamentos/apartamento_10/habitacion_4.jpeg",
+
+        "images/apartamentos/apartamento_10/bano_1.jpeg",
+        "images/apartamentos/apartamento_10/bano_2.jpeg",
+        "images/apartamentos/apartamento_10/video.mp4"
+
+    ],
+    description: "Se vende apartamento en conjunto Aliso 1, ubicado en Soacha. Cuenta con 43.38 m², 2 habitaciones, 1 baño, sala-comedor, cocina y zona de lavandería. Ubicado en APT 202 Torre 16, con acceso por escaleras. Excelente opción para quienes buscan comodidad y buena ubicación a un precio competitivo.",
+    details: {
+        building: { conjunto: "Aliso 1", estrato: "3", antiguedad: "6 años", piso: "2", acceso: "Escaleras" },
+        distribution: { area: "43.38 m²", habitaciones: "2", banos: "1", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Sí", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
 }
 };
