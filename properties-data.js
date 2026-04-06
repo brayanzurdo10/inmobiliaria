@@ -267,8 +267,13 @@ const defaultPropertyImages = {
         "images/apartamentos/apartamento_9/pasillo_2.jpg",
 
         "images/apartamentos/apartamento_9/habitacion_1.jpg",
+        "images/apartamentos/apartamento_9/habitacion_2.jpg",
+        "images/apartamentos/apartamento_9/habitacion_3.jpg",
+        "images/apartamentos/apartamento_9/bano_2.jpg",
 
-        "images/apartamentos/apartamento_9/bano.jpg"
+        "images/apartamentos/apartamento_9/bano.jpg",
+        "images/apartamentos/apartamento_9/bano_1.jpg",
+        
     ],
     description: "Se vende excelente apartamento en Hogares de Soacha, conjunto residencial La Grandeza 4, ubicado en piso 6. Cuenta con 50 m², 3 habitaciones, 2 baños, sala-comedor, cocina y zona de lavandería. Estrato 3, parqueadero por sorteo. Ideal para familias que buscan comodidad y buena ubicación.",
     details: {
