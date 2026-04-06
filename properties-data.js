@@ -246,6 +246,36 @@ const defaultPropertyImages = {
         distribution: { area: "53 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", bbq: "Sí", cicloparqueadero: "Sí" }
     }
+},
+9:{
+    title: "Apartamento en La Grandeza 4 - Hogares de Soacha Piso 6",
+    location: "Hogares de Soacha, Soacha, Cundinamarca",
+    price: "Consultar",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_9/porteria.jpg",
+        "images/apartamentos/apartamento_9/parqueadero.jpg",
+
+        "images/apartamentos/apartamento_9/sala_1.jpg",
+        "images/apartamentos/apartamento_9/sala_2.jpg",
+
+        "images/apartamentos/apartamento_9/cocina_1.jpg",
+        "images/apartamentos/apartamento_9/lavadero_1.jpg",
+        "images/apartamentos/apartamento_9/lavadero_2.jpg",
+
+        "images/apartamentos/apartamento_9/pasillo.jpg",
+        "images/apartamentos/apartamento_9/pasillo_2.jpg",
+
+        "images/apartamentos/apartamento_9/habitacion_1.jpg",
+
+        "images/apartamentos/apartamento_9/bano.jpg"
+    ],
+    description: "Se vende excelente apartamento en Hogares de Soacha, conjunto residencial La Grandeza 4, ubicado en piso 6. Cuenta con 50 m², 3 habitaciones, 2 baños, sala-comedor, cocina y zona de lavandería. Estrato 3, parqueadero por sorteo. Ideal para familias que buscan comodidad y buena ubicación.",
+    details: {
+        building: { conjunto: "La Grandeza 4", estrato: "3", antiguedad: "N/A", piso: "6° piso", acceso: "Escaleras" },
+        distribution: { area: "50 m²", habitaciones: "3", banos: "2", garajes: "Por sorteo", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Zona de lavandería", salonSocial: "Si", parqueInfantil: "Si", zonasVerdes: "Sí" }
+    }
 }
 };
 
