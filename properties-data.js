@@ -310,6 +310,41 @@ const defaultPropertyImages = {
         distribution: { area: "43.38 m²", habitaciones: "2", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Sí", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
+},
+11:{
+    title: "Apartamento en Capuchina - Venta Soacha piso 2",
+    location: "Soacha, Cundinamarca",
+    price: "$155.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_11/sala.jpg",
+        "images/apartamentos/apartamento_11/cocina.jpg",
+        "images/apartamentos/apartamento_11/pasillo.jpg",
+
+        "images/apartamentos/apartamento_11/habitacion_1.jpg",
+        "images/apartamentos/apartamento_11/habitacion_2.jpg",
+        "images/apartamentos/apartamento_11/habitacion_3.jpg",
+        "images/apartamentos/apartamento_11/habitacion_4.jpg",
+        "images/apartamentos/apartamento_11/habitacion_5.jpg",
+        "images/apartamentos/apartamento_11/habitacion_6.jpg",
+        "images/apartamentos/apartamento_11/habitacion_7.jpg",
+
+        "images/apartamentos/apartamento_11/bano_1.jpg",
+        "images/apartamentos/apartamento_11/bano_2.jpg",
+
+        "images/apartamentos/apartamento_11/fachada.jpg",
+        "images/apartamentos/apartamento_11/entrada.jpg",
+
+        "images/apartamentos/apartamento_11/video_1.mp4",
+        "images/apartamentos/apartamento_11/video_2.mp4",
+        "images/apartamentos/apartamento_11/video_3.mp4"
+    ],
+    description: "Se vende apartamento en conjunto Capuchina, ubicado en Soacha. Cuenta con 51 m², 3 habitaciones, 2 baños, sala-comedor, cocina y un pequeño estudio. Todas las habitaciones tienen clóset. El inmueble está totalmente terminado, se entrega pintado y listo para entrega inmediata. Excelente opción para vivienda o inversión.",
+    details: {
+        building: { conjunto: "Capuchina", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
+        distribution: { area: "51 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No especificado", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "No especificado", zonasVerdes: "No especificado" }
+    }
 }
 };
 
