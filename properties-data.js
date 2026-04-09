@@ -440,6 +440,64 @@ const defaultPropertyImages = {
         distribution: { area: "43 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
+},
+15:{
+    title: "Casa en Bosa Porvenir - Alameda del Portal 3 Pisos Esquinera",
+    location: "Bosa Porvenir, Bogotá, Colombia",
+    price: "$140.000.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_15/fachada.jpg",
+        "images/apartamentos/apartamento_15/sala_comedor.jpg",
+        "images/apartamentos/apartamento_15/habitacion_1.jpg",
+        "images/apartamentos/apartamento_15/bano_1.jpg",
+        "images/apartamentos/apartamento_15/bano_ducha.jpg",
+        "images/apartamentos/apartamento_15/video.mp4",
+    ],
+    description: "Se vende casa esquinera de 3 pisos en Bosa Porvenir, conjunto Alameda del Portal. Cuenta con 44.80 m² construidos, excelente distribución y posibilidad de ampliación a un 4° piso. En el primer nivel dispone de sala-comedor y cocina; en el segundo nivel habitación principal y baño; en el tercer nivel zona de ropas y una habitación adicional. Ideal para quienes buscan una vivienda con potencial de ampliación, buena ubicación y precio negociable. Papeles al día, lista para escriturar. Se acepta pago en efectivo o crédito.",
+    details: {
+        building: { conjunto: "Alameda del Portal", estrato: "N/A", antiguedad: "N/A", piso: "Casa de 3 pisos", acceso: "Escaleras" },
+        distribution: { area: "44.80 m²", habitaciones: "2", banos: "1", garajes: "No especificado", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No especificado", lavanderia: "Zona de ropas", salonSocial: "No", parqueInfantil: "No especificado", zonasVerdes: "Sí", ampliacion: "Posibilidad de 4° piso" }
+    }
+},
+16:{
+    title: "Casa en Bosa Recreo - Remodelada con Terraza",
+    location: "Bosa Recreo, Bogotá, Colombia",
+    price: "$132.000.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_16/apartamento_16_fachada_principal.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_fachada_entrada.jpg",
+
+        "images/apartamentos/apartamento_16/apartamento_16_sala_entrada.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_sala_comedor.jpg",
+
+        "images/apartamentos/apartamento_16/apartamento_16_cocina_1.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_cocina_2.jpg",
+
+        "images/apartamentos/apartamento_16/apartamento_16_habitacion_1_a.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_habitacion_1_b.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_habitacion_2_a.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_habitacion_2_b.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_habitacion_2_c.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_bano_1.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_bano_ducha.jpg",
+
+        "images/apartamentos/apartamento_16/apartamento_16_zona_lavanderia_1.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_zona_lavanderia_2.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_zona_lavanderia_3.jpg",
+
+        "images/apartamentos/apartamento_16/apartamento_16_escalera_interior.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_escalera_plantas.jpg",
+        "images/apartamentos/apartamento_16/apartamento_16_video_recorrido.mp4"
+        ],
+    description: "Se vende espectacular casa en Bosa Recreo, completamente remodelada. Cuenta con medidas de 3x6 metros, excelente distribución y acabados modernos. Dispone de 2 habitaciones, 1 baño, sala-comedor amplia, cocina integral, espacio para segundo baño y terraza. Ubicada cerca al Mega Hospital de Bosa, en una zona de alta valorización. Ideal para quienes buscan comodidad, inversión y una vivienda lista para habitar. Precio negociable.",
+    details: {
+        building: { conjunto: "N/A", estrato: "N/A", antiguedad: "N/A", piso: "Casa", acceso: "Escaleras" },
+        distribution: { area: "18 m² por piso aprox", habitaciones: "2", banos: "1 (opción segundo)", garajes: "No especificado", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "No especificado", zonasVerdes: "Sí", terraza: "Sí", remodelado: "Sí" }
+    }
 }
 };
 
