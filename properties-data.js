@@ -498,7 +498,88 @@ const defaultPropertyImages = {
         distribution: { area: "18 m² por piso aprox", habitaciones: "2", banos: "1 (opción segundo)", garajes: "No especificado", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "No especificado", zonasVerdes: "Sí", terraza: "Sí", remodelado: "Sí" }
     }
-}
+},
+17: {
+    title: "Casa en Venta Tierra Buena Soacha Parque Campestre",
+    location: "Tierra Buena, Soacha, Cundinamarca",
+    price: "$145.000.000 - $150.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_17/fachada_principal.jpg",
+        "images/apartamentos/apartamento_17/fachada_entrada.jpg",
+        "images/apartamentos/apartamento_17/fachada_lateral.jpg",
+
+        "images/apartamentos/apartamento_17/sala_a.jpg",
+        "images/apartamentos/apartamento_17/sala_b.jpg",
+
+        "images/apartamentos/apartamento_17/cocina.jpg",
+
+        "images/apartamentos/apartamento_17/habitacion_1_a.jpg",
+        "images/apartamentos/apartamento_17/habitacion_1_b.jpg",
+        "images/apartamentos/apartamento_17/habitacion_2_a.jpg",
+        "images/apartamentos/apartamento_17/habitacion_2_b.jpg",
+        "images/apartamentos/apartamento_17/habitacion_2_c.jpg",
+        "images/apartamentos/apartamento_17/habitacion_3_a.jpg",
+        "images/apartamentos/apartamento_17/habitacion_3_b.jpg",
+        "images/apartamentos/apartamento_17/habitacion_3_c.jpg",
+
+        "images/apartamentos/apartamento_17/bano_1.jpg",
+        "images/apartamentos/apartamento_17/bano_lavamanos.jpg",
+
+        "images/apartamentos/apartamento_17/zona_lavanderia.jpg",
+
+        "images/apartamentos/apartamento_17/escalera_1.jpg",
+        "images/apartamentos/apartamento_17/escalera_2.jpg",
+        "images/apartamentos/apartamento_17/cuarto_deposito.jpg",
+        "images/apartamentos/apartamento_17/video.mp4"
+    ],
+    description: "Se vende casa en Tierra Buena Soacha Parque Campestre. Cuenta con 72 m² construidos (3x8), distribuida en 3 pisos, 3 habitaciones con clóset, 2 baños, sala comedor, cocina integral y patio. Precio de $145.000.000 en efectivo o $150.000.000 con banco. Información: 3028492570.",
+    details: {
+        building: { conjunto: "Parque Campestre", estrato: "3", antiguedad: "No especificado", piso: "Casa 3 niveles", acceso: "Escaleras" },
+        distribution: { area: "72 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No especificado", lavanderia: "Sí", salonSocial: "No", parqueInfantil: "Sí", zonasVerdes: "Sí", patio: "Sí" }
+    }
+},
+18: {
+    title: "Casa en Venta Bosa Olivos 2 - Frente a Parque Tibanica",
+    location: "Bosa Olivos 2, Bogotá, Colombia",
+    price: "$170.000.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_18/escalera_1.jpg",
+        "images/apartamentos/apartamento_18/bano_1.jpg",
+        "images/apartamentos/apartamento_18/bano_2.jpg",
+        "images/apartamentos/apartamento_18/bano_ducha.jpg",
+
+        "images/apartamentos/apartamento_18/cocina.jpg",
+        "images/apartamentos/apartamento_18/cocina_lavanderia.jpg",
+
+        "images/apartamentos/apartamento_18/cuarto_deposito.jpg",
+        "images/apartamentos/apartamento_18/escalera_2.jpg",
+
+        "images/apartamentos/apartamento_18/habitacion_1_a.jpg",
+        "images/apartamentos/apartamento_18/habitacion_1_b.jpg",
+        "images/apartamentos/apartamento_18/habitacion_2_a.jpg",
+        "images/apartamentos/apartamento_18/habitacion_2_b.jpg",
+        "images/apartamentos/apartamento_18/habitacion_3_a.jpg",
+        "images/apartamentos/apartamento_18/habitacion_3_b.jpg",
+        "images/apartamentos/apartamento_18/habitacion_3_c.jpg",
+        "images/apartamentos/apartamento_18/habitacion_3_d.jpg",
+        "images/apartamentos/apartamento_18/habitacion_3_e.jpg",
+
+        "images/apartamentos/apartamento_18/pasillo.jpg",
+        "images/apartamentos/apartamento_18/piso_detalle.jpg",
+        "images/apartamentos/apartamento_18/zona_lavanderia.jpg",
+        "images/apartamentos/apartamento_18/zona_video.mp4"
+    ],
+    description: "Se vende casa en Bosa Olivos 2 frente al Parque Tibanica. Cuenta con un área de 6x6 metros distribuidos en 3 pisos, ideal para inversión por su potencial rentable. En el primer piso dispone de 2 habitaciones, sala o comedor, baño y cocina con gas natural. El segundo piso cuenta con 3 habitaciones, un baño amplio, cocina y zona de lavadero. El tercer piso tiene 2 habitaciones, baño, sala-comedor, cocina y zona de lavado. Precio $170.000.000 negociables.",
+    details: {
+        building: { conjunto: "N/A", estrato: "2-3", antiguedad: "No especificado", piso: "Casa 3 niveles", acceso: "Escaleras" },
+        distribution: { area: "36 m² por piso aprox (6x6)", habitaciones: "7", banos: "3", garajes: "No especificado", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No", lavanderia: "Sí", salonSocial: "No", parqueInfantil: "Sí (Parque Tibanica)", zonasVerdes: "Sí", rentable: "Sí" }
+    }
+},
+
 };
 
 function getPropertyImages() {
