@@ -343,7 +343,102 @@ const defaultPropertyImages = {
     details: {
         building: { conjunto: "Capuchina", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
         distribution: { area: "51 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
-        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No especificado", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "No especificado", zonasVerdes: "No especificado" }
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No especificado", lavanderia: "Sí", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
+},
+12:{
+    title: "Apartamento en Azalea - Ciudad Verde | Venta Soacha piso 2",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$184.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_12/sala_1.jpg",
+        "images/apartamentos/apartamento_12/sala_2.jpg",
+        "images/apartamentos/apartamento_12/pasillo.jpg",
+
+        "images/apartamentos/apartamento_12/cocina.jpg",
+
+        "images/apartamentos/apartamento_12/habitacion_principal.jpg",
+        "images/apartamentos/apartamento_12/habitacion_principal_2.jpg",
+        "images/apartamentos/apartamento_12/habitacion_1.jpg",
+        "images/apartamentos/apartamento_12/habitacion_2.jpg",
+        "images/apartamentos/apartamento_12/habitacion_3.jpg",
+        "images/apartamentos/apartamento_12/habitacion_4.jpg",
+        "images/apartamentos/apartamento_12/habitacion_5.jpg",
+        "images/apartamentos/apartamento_12/habitacion_6.jpg",
+        "images/apartamentos/apartamento_12/habitacion_7.jpg",
+
+        "images/apartamentos/apartamento_12/bano_1.jpg",
+        "images/apartamentos/apartamento_12/bano_2.jpg",
+        "images/apartamentos/apartamento_12/bano_3.jpg"
+    ],
+    description: "Se vende apartamento en conjunto Azalea, ubicado en Ciudad Verde, Soacha. Cuenta con 56 m², 3 habitaciones, 2 baños, sala comedor, cocina integral, sala de estar y zona de lavado. Piso en cerámica en todas sus áreas. Ubicado en segundo piso, Torre 4, con parqueadero comunal. Excelente opción para vivienda familiar por su amplitud y ubicación.",
+    details: {
+        building: { conjunto: "Azalea", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
+        distribution: { area: "56 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
+},
+13:{
+    title: "Apartamento en Alhelí - Ciudad Verde | Venta Soacha piso 2",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$189.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_13/cocina_1.jpg",
+        "images/apartamentos/apartamento_13/sala_1.jpg",
+        
+        
+        "images/apartamentos/apartamento_13/cocina_2.jpg",
+        "images/apartamentos/apartamento_13/cocina_lavadero.jpg",
+
+        "images/apartamentos/apartamento_13/pasillo_1.jpg",
+        "images/apartamentos/apartamento_13/pasillo_2.jpg",
+
+        "images/apartamentos/apartamento_13/habitacion_principal.jpg",
+        "images/apartamentos/apartamento_13/habitacion_principal_2.jpg",
+        "images/apartamentos/apartamento_13/habitacion_1.jpg",
+        "images/apartamentos/apartamento_13/habitacion_2.jpg",
+        "images/apartamentos/apartamento_13/habitacion_3.jpg",
+        "images/apartamentos/apartamento_13/habitacion_4.jpg",
+        "images/apartamentos/apartamento_13/habitacion_5.jpg",
+
+        "images/apartamentos/apartamento_13/bano_1.jpg",
+        "images/apartamentos/apartamento_13/bano_2.jpg"
+    ],
+    description: "Se vende apartamento en conjunto Alhelí, ubicado en Ciudad Verde, Soacha. Cuenta con 56 m², 3 habitaciones, 2 baños, sala comedor, cocina integral y zona de circulación amplia. El inmueble está remodelado, con pisos en cerámica en todas sus áreas y excelente estado. Ubicado en segundo piso con vista interior y parqueadero comunal. Excelente opción para vivienda familiar.",
+    details: {
+        building: { conjunto: "Alhelí", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
+        distribution: { area: "56 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
+    }
+},
+14:{
+    title: "Apartamento en Verónica - Ciudad Verde | Venta Soacha piso 5",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$153.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_14/sala_1.jpg",
+        "images/apartamentos/apartamento_14/sala_2.jpg",
+        "images/apartamentos/apartamento_14/sala_3.jpg",
+        "images/apartamentos/apartamento_14/sala_4.jpg",
+        "images/apartamentos/apartamento_14/cocina.jpg",
+        "images/apartamentos/apartamento_14/habitacion_1.jpg",
+        "images/apartamentos/apartamento_14/habitacion_2.jpg",
+        "images/apartamentos/apartamento_14/habitacion_3.jpg",
+        "images/apartamentos/apartamento_14/habitacion_4.jpg",
+        "images/apartamentos/apartamento_14/bano_principal_1.jpg",
+        "images/apartamentos/apartamento_14/bano_principal_ducha.jpg",
+        "images/apartamentos/apartamento_14/bano_2_ducha_2.jpg",
+        "images/apartamentos/apartamento_14/bano_2_ducha.jpg"
+
+    ],
+    description: "Se vende hermoso apartamento remodelado en conjunto Verónica, ubicado en Ciudad Verde, Soacha. Cuenta con 43 m², 3 habitaciones, 1 baño, sala comedor, cocina y zona de lavandería. El inmueble tiene acabados de lujo y se encuentra en excelente estado. Ubicado en quinto piso con acceso por escaleras. No aplica para crédito hipotecario, solo pago en efectivo.",
+    details: {
+        building: { conjunto: "Verónica", estrato: "3", antiguedad: "No especificado", piso: "5", acceso: "Escaleras" },
+        distribution: { area: "43 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     }
 }
 };
