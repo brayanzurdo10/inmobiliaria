@@ -97,14 +97,14 @@
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">Inmuebles<span>Pro</span></a>
+<button onclick="goBackToProperty()" class="logo">Inmuebles<span>Pro</span></button>
                 <ul class="nav-links">
                     <li><a href="index.html#inicio">Inicio</a></li>
                     <li><a href="index.html#propiedades">Propiedades</a></li>
                     <li><a href="index.html#nosotros">Nosotros</a></li>
                     <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
-                <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver</a>
+<button onclick="goBackToProperty()" class="btn-back"><i class="fas fa-arrow-left"></i> Volver</button>
             </nav>
         </div>
     </header>
@@ -445,7 +445,10 @@ function selectImage(index) {
             }
         });
 
-        loadProperty();
+loadProperty();
+        function goBackToProperty() {
+            window.location.href = 'index.html?id=' + propertyId;
+        }
     </script>
 </body>
 </html>

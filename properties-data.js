@@ -250,7 +250,8 @@ const defaultPropertyImages = {
 9:{
     title: "Apartamento en La Grandeza 4 - Hogares de Soacha Piso 6",
     location: "Hogares de Soacha, Soacha, Cundinamarca",
-    price: "157.000.000",
+price: "157.000.000",
+    oldPrice: "$162.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_9/porteria.jpg",
@@ -285,7 +286,8 @@ const defaultPropertyImages = {
 10:{
     title: "Apartamento en Aliso 1 - Venta Soacha piso 2",
     location: "Calle 15 #20-276, Soacha, Cundinamarca",
-    price: "$150.000.000",
+price: "$150.000.000",
+    oldPrice: "$155.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_10/sala_1.jpeg",
@@ -314,7 +316,8 @@ const defaultPropertyImages = {
 11:{
     title: "Apartamento en Capuchina - Venta Soacha piso 2",
     location: "Soacha, Cundinamarca",
-    price: "$155.000.000",
+price: "$155.000.000",
+    oldPrice: "$160.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_11/sala.jpg",
@@ -349,7 +352,8 @@ const defaultPropertyImages = {
 12:{
     title: "Apartamento en Azalea - Ciudad Verde | Venta Soacha piso 2",
     location: "Ciudad Verde, Soacha, Cundinamarca",
-    price: "$184.000.000",
+price: "$184.000.000",
+    oldPrice: "$190.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_12/sala_1.jpg",
@@ -382,7 +386,8 @@ const defaultPropertyImages = {
 13:{
     title: "Apartamento en Alhelí - Ciudad Verde | Venta Soacha piso 2",
     location: "Ciudad Verde, Soacha, Cundinamarca",
-    price: "$189.000.000",
+price: "$189.000.000",
+    oldPrice: "$195.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_13/cocina_1.jpg",
@@ -416,7 +421,8 @@ const defaultPropertyImages = {
 14:{
     title: "Apartamento en Verónica - Ciudad Verde | Venta Soacha piso 5",
     location: "Ciudad Verde, Soacha, Cundinamarca",
-    price: "$153.000.000",
+price: "$153.000.000",
+    oldPrice: "$158.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_14/sala_1.jpg",
@@ -444,7 +450,8 @@ const defaultPropertyImages = {
 15:{
     title: "Casa en Bosa Porvenir - Alameda del Portal 3 Pisos Esquinera",
     location: "Bosa Porvenir, Bogotá, Colombia",
-    price: "$140.000.000",
+price: "$140.000.000",
+    oldPrice: "$145.000.000",
     badge: "Negociable",
     images: [
         "images/apartamentos/apartamento_15/fachada.jpg",
@@ -464,7 +471,8 @@ const defaultPropertyImages = {
 16:{
     title: "Casa en Bosa Recreo - Remodelada con Terraza",
     location: "Bosa Recreo, Bogotá, Colombia",
-    price: "$132.000.000",
+price: "$132.000.000",
+    oldPrice: "$137.000.000",
     badge: "Negociable",
     images: [
         "images/apartamentos/apartamento_16/apartamento_16_fachada_principal.jpg",
@@ -502,7 +510,8 @@ const defaultPropertyImages = {
 17: {
     title: "Casa en Venta Tierra Buena Soacha Parque Campestre",
     location: "Tierra Buena, Soacha, Cundinamarca",
-    price: "$145.000.000 - $150.000.000",
+price: "$145.000.000 - $150.000.000",
+    oldPrice: "$150.000.000 - $155.000.000",
     badge: "Disponible",
     images: [
         "images/apartamentos/apartamento_17/fachada_principal.jpg",
@@ -543,7 +552,8 @@ const defaultPropertyImages = {
 18: {
     title: "Casa en Venta Bosa Olivos 2 - Frente a Parque Tibanica",
     location: "Bosa Olivos 2, Bogotá, Colombia",
-    price: "$170.000.000",
+price: "$170.000.000",
+    oldPrice: "$175.000.000",
     badge: "Negociable",
     images: [
         "images/apartamentos/apartamento_18/escalera_1.jpg",

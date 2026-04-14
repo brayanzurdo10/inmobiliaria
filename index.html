@@ -1670,8 +1670,19 @@
             });
         });
 
-        // Función para inicializar los botones de detalles
+// Función para inicializar los botones de detalles
         function initDetailButtons() {
+            // Scroll to specific property if coming from details page
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = urlParams.get('id');
+            if (propertyId) {
+                setTimeout(() => {
+                    const targetCard = document.querySelector(`#propertiesGrid .property-card[data-property="${propertyId}"]`);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 500); // Delay for rendering
+            }
             const buttons = document.querySelectorAll('.btn-details');
             buttons.forEach((button, index) => {
                 button.onclick = function() {
