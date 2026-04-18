@@ -33,7 +33,8 @@ const defaultPropertyImages = {
         building: { conjunto: "Palmeto", estrato: "3", antiguedad: "N/A", piso: "2° piso", acceso: "Escaleras" },
         distribution: { area: "68 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo"]
 },
 5:{
     title: "Casa en Parque Campestre - Casa en Venta 3 Pisos Soacha",
@@ -63,7 +64,8 @@ const defaultPropertyImages = {
         building: { conjunto: "Parque Campestre", estrato: "3", antiguedad: "15 años", piso: "Casa de 3 pisos", acceso: "Escaleras" },
         distribution: { area: "93 m² aprox", habitaciones: "4", banos: "2", garajes: "Comunal", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
 },
 6:{
     title: "Apartamento en Ciudad Verde - Conjunto Eucalipto Primer Piso",
@@ -93,7 +95,8 @@ const defaultPropertyImages = {
         building: { conjunto: "Eucalipto", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
         distribution: { area: "40 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Zona de lavandería", salonSocial: "Sí", parqueInfantil: "No especificado", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
 },
 7:{
     title: "Apartamento en Jardín Maiporé - 1er Piso Venta Soacha",
@@ -121,7 +124,8 @@ const defaultPropertyImages = {
         building: { conjunto: "Jardín Maiporé Torre 17", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
         distribution: { area: "47 m²", habitaciones: "2", banos: "1 (opción segundo)", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Vigilancia 24/7", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", gimnasio: "Biosaludable" }
-    }
+    },
+    pagos: ["efectivo"]
 },
 8:{
     title: "Apartamento en Torres del Camino 1 - 1er Piso Venta Soacha",
@@ -150,7 +154,8 @@ const defaultPropertyImages = {
         building: { conjunto: "Torres del Camino 1", estrato: "3", antiguedad: "N/A", piso: "Primer piso", acceso: "Fácil acceso" },
         distribution: { area: "53 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Independiente", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí", bbq: "Sí", cicloparqueadero: "Sí" }
-    }
+    },
+    pagos: ["efectivo"]
 },
 9:{
     title: "Apartamento en La Grandeza 4 - Hogares de Soacha Piso 6",
@@ -186,7 +191,8 @@ price: "157.000.000",
         building: { conjunto: "La Grandeza 4", estrato: "3", antiguedad: "N/A", piso: "6° piso", acceso: "Escaleras" },
         distribution: { area: "50 m²", habitaciones: "3", banos: "2", garajes: "Por sorteo", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Zona de lavandería", salonSocial: "Si", parqueInfantil: "Si", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario"]
 },
 10:{
     title: "Apartamento en Aliso 1 - Venta Soacha piso 2",
@@ -216,7 +222,8 @@ price: "$150.000.000",
         building: { conjunto: "Aliso 1", estrato: "3", antiguedad: "6 años", piso: "2", acceso: "Escaleras" },
         distribution: { area: "43.38 m²", habitaciones: "2", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Sí", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "fna"]
 },
 11:{
     title: "Apartamento en Capuchina - Venta Soacha piso 2",
@@ -252,7 +259,8 @@ price: "$155.000.000",
         building: { conjunto: "Capuchina", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
         distribution: { area: "51 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "No especificado", lavanderia: "Sí", salonSocial: "Sí", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario"]
 },
 12:{
     title: "Apartamento en Azalea - Ciudad Verde | Venta Soacha piso 2",
@@ -286,7 +294,8 @@ price: "$184.000.000",
         building: { conjunto: "Azalea", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
         distribution: { area: "56 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
 },
 13:{
     title: "Apartamento en Alhelí - Ciudad Verde | Venta Soacha piso 2",
@@ -321,7 +330,8 @@ price: "$189.000.000",
         building: { conjunto: "Alhelí", estrato: "3", antiguedad: "No especificado", piso: "2", acceso: "Escaleras" },
         distribution: { area: "56 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
 },
 14:{
     title: "Apartamento en Verónica - Ciudad Verde | Venta Soacha piso 5",
@@ -350,7 +360,8 @@ price: "$153.000.000",
         building: { conjunto: "Verónica", estrato: "3", antiguedad: "No especificado", piso: "5", acceso: "Escaleras" },
         distribution: { area: "43 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
 },
 15:{
     title: "Casa en Bosa Porvenir - Alameda del Portal 3 Pisos Esquinera",
@@ -371,7 +382,8 @@ price: "$140.000.000",
         building: { conjunto: "Alameda del Portal", estrato: "N/A", antiguedad: "N/A", piso: "Casa de 3 pisos", acceso: "Escaleras" },
         distribution: { area: "44.80 m²", habitaciones: "2", banos: "1", garajes: "No especificado", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No especificado", lavanderia: "Zona de ropas", salonSocial: "No", parqueInfantil: "No especificado", zonasVerdes: "Sí", ampliacion: "Posibilidad de 4° piso" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario"]
 },
 16:{
     title: "Casa en Bosa Recreo - Remodelada con Terraza",
@@ -410,7 +422,8 @@ price: "$132.000.000",
         building: { conjunto: "N/A", estrato: "N/A", antiguedad: "N/A", piso: "Casa", acceso: "Escaleras" },
         distribution: { area: "18 m² por piso aprox", habitaciones: "2", banos: "1 (opción segundo)", garajes: "No especificado", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No", lavanderia: "Zona de lavandería", salonSocial: "No", parqueInfantil: "No especificado", zonasVerdes: "Sí", terraza: "Sí", remodelado: "Sí" }
-    }
+    },
+    pagos: ["efectivo"]
 },
 17: {
     title: "Casa en Venta Tierra Buena Soacha Parque Campestre",
@@ -452,7 +465,8 @@ price: "$145.000.000 - $150.000.000",
         building: { conjunto: "Parque Campestre", estrato: "3", antiguedad: "No especificado", piso: "Casa 3 niveles", acceso: "Escaleras" },
         distribution: { area: "72 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No especificado", lavanderia: "Sí", salonSocial: "No", parqueInfantil: "Sí", zonasVerdes: "Sí", patio: "Sí" }
-    }
+    },
+    pagos: ["efectivo", "hipotecario"]
 },
 18: {
     title: "Casa en Venta Bosa Olivos 2 - Frente a Parque Tibanica",
@@ -492,7 +506,8 @@ price: "$170.000.000",
         building: { conjunto: "N/A", estrato: "2-3", antiguedad: "No especificado", piso: "Casa 3 niveles", acceso: "Escaleras" },
         distribution: { area: "36 m² por piso aprox (6x6)", habitaciones: "7", banos: "3", garajes: "No especificado", ascensores: "No aplica" },
         features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "No", lavanderia: "Sí", salonSocial: "No", parqueInfantil: "Sí (Parque Tibanica)", zonasVerdes: "Sí", rentable: "Sí" }
-    }
+    },
+    pagos: ["efectivo"]
 },
 
 };
