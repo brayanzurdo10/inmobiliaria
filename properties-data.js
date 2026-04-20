@@ -509,7 +509,117 @@ price: "$170.000.000",
     },
     pagos: ["efectivo"]
 },
+19: { title: "Apartamento en Venta Conjunto Verónica - Ciudad Verde", location: "Ciudad Verde, Soacha, Cundinamarca", price: "$133.000.000", badge: "Disponible", images: [ "images/apartamentos/apartamento_19/sala_1.jpg", "images/apartamentos/apartamento_19/sala_2.jpg", "images/apartamentos/apartamento_19/sala_3.jpg", "images/apartamentos/apartamento_19/cocina.jpg", "images/apartamentos/apartamento_19/habitacion_1.jpg", "images/apartamentos/apartamento_19/habitacion_2.jpg", "images/apartamentos/apartamento_19/habitacion_3.jpg", "images/apartamentos/apartamento_19/habitacion_4.jpg" ], description: "Espectacular apartamento ubicado en el conjunto Verónica en Ciudad Verde. Cuenta con 44 m², 2 habitaciones, 1 baño, sala comedor, cocina integral y está completamente remodelado con pisos laminados en todas sus áreas. Ubicado en piso 6 con vista interior tipo penthouse. Dispone de parqueadero comunal y excelente ubicación cerca a los centros comerciales Miraflores y Prado Verde. Se recibe pago en efectivo, crédito con todos los bancos y Fondo Nacional del Ahorro.", details: { building: { conjunto: "Verónica", estrato: "3", antiguedad: "No especificado", piso: "6", acceso: "Escaleras" }, distribution: { area: "44 m²", habitaciones: "2", banos: "1", garajes: "Comunal", ascensores: "No especificado" }, features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí", remodelado: "Sí", pisos: "Laminados" } }, pagos: ["efectivo", "hipotecario", "fna"] },
 
+20: {
+    title: "Casa en Venta Usme Pueblo - Conjunto Residencial El Sol",
+    location: "Usme Pueblo, Bogotá, Colombia",
+    price: "$175.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_20/sala_1.jpg",
+        "images/apartamentos/apartamento_20/sala_2.jpg",
+
+        "images/apartamentos/apartamento_20/cocina.jpg",
+
+        "images/apartamentos/apartamento_20/habitacion_1.jpg",
+        "images/apartamentos/apartamento_20/habitacion_2.jpg",
+        "images/apartamentos/apartamento_20/habitacion_3.jpg",
+        "images/apartamentos/apartamento_20/habitacion_4.jpg",
+        "images/apartamentos/apartamento_20/habitacion_5.jpg",
+
+        "images/apartamentos/apartamento_20/bano_1.jpg",
+        "images/apartamentos/apartamento_20/bano_2.jpg",
+
+        "images/apartamentos/apartamento_20/deposito.jpg"
+    ],
+    description: "Hermosa casa ubicada en Usme Pueblo, conjunto residencial El Sol. Cuenta con 4 habitaciones, 2 cocinas integrales, 2 baños, sala comedor y sala de estar. Pisos en cerámica en todas sus áreas y documentos al día. Excelente opción de inversión por su potencial rentable, ubicada en sector principal con fácil acceso a transporte. Se recibe pago en efectivo, crédito con todos los bancos y Fondo Nacional del Ahorro.",
+    details: {
+        building: { conjunto: "El Sol", estrato: "No especificado", antiguedad: "No especificado", piso: "Casa", acceso: "Escaleras" },
+        distribution: { area: "No especificado", habitaciones: "4", banos: "2", garajes: "No especificado", ascensores: "No aplica" },
+        features: { tipo: "Casa", gas: "Sí", parqueadero: "No especificado", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí", rentable: "Sí", pisos: "Cerámica" }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
+},
+21: {
+    title: "Apartamento de Lujo en Conjunto Abundará la Prosperidad",
+    location: "Bogotá, Colombia",
+    price: "$297.000.000",
+    badge: "Disponible",
+    images: [
+        // Sala
+        "images/apartamentos/apartamento_21/sala_3.jpg",
+        "images/apartamentos/apartamento_21/sala_1.jpg",
+        "images/apartamentos/apartamento_21/sala_2.jpg",
+        
+        "images/apartamentos/apartamento_21/sala_lampara.jpg",
+
+        // Cocina
+        "images/apartamentos/apartamento_21/cocina_1.jpg",
+        "images/apartamentos/apartamento_21/cocina_2.jpg",
+        "images/apartamentos/apartamento_21/cocina_3.jpg",
+
+        // Habitaciones
+        "images/apartamentos/apartamento_21/habitacion_1.jpg",
+        "images/apartamentos/apartamento_21/habitacion_2.jpg",
+        "images/apartamentos/apartamento_21/habitacion_3.jpg",
+
+        // Baños
+        "images/apartamentos/apartamento_21/bano_1.jpg",
+        "images/apartamentos/apartamento_21/bano_2.jpg",
+        "images/apartamentos/apartamento_21/bano_3.jpg",
+        "images/apartamentos/apartamento_21/bano_4.jpg",
+
+        // Jacuzzi / Spa
+        "images/apartamentos/apartamento_21/jacuzzi_1.jpg",
+        "images/apartamentos/apartamento_21/jacuzzi_2.jpg",
+        "images/apartamentos/apartamento_21/jacuzzi_3.jpg",
+        "images/apartamentos/apartamento_21/jacuzzi_4.jpg",
+
+        // Terraza
+        "images/apartamentos/apartamento_21/terraza_asador_jacuzzi.jpg",
+        "images/apartamentos/apartamento_21/terraza_jacuzzi_2.jpg",
+
+        // Extras
+        "images/apartamentos/apartamento_21/deposito.jpg",
+
+        // Zonas comunes
+        "images/apartamentos/apartamento_21/zona_comun_lobby_1.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_lobby_2.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_gimnasio_1.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_gimnasio_2.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_gimnasio_3.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_piscina_1.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_piscina_2.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_parque_agua.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_parque_agua_2.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_parque_mascotas.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_salon_eventos.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_salon_ninos.jpg",
+        "images/apartamentos/apartamento_21/zona_comun_cancha.jpg",
+        "images/apartamentos/apartamento_21/video.mp4"
+    ],
+    description: "Se vende lujoso apartamento en el conjunto Abundará la Prosperidad. Cuenta con 67 m², ubicado en primer piso con ascensor. Dispone de 3 habitaciones, 2 amplios baños, balcón, cocina integral independiente con barra americana, patio de ropas independiente y zona BBQ privada. Incluye un exclusivo cuarto spa dentro del apartamento con tina/jacuzzi. Ubicado en estrato 4, ideal para quienes buscan confort, lujo y excelente valorización.",
+    details: {
+        building: { conjunto: "Abundará la Prosperidad", estrato: "4", antiguedad: "No especificado", piso: "1", acceso: "Ascensor" },
+        distribution: { area: "67 m²", habitaciones: "3", banos: "2", garajes: "No especificado", ascensores: "Sí" },
+        features: { 
+            tipo: "Apartamento", 
+            gas: "Sí", 
+            parqueadero: "No especificado", 
+            porteria: "Sí", 
+            lavanderia: "Independiente", 
+            salonSocial: "Sí", 
+            parqueInfantil: "Sí", 
+            zonasVerdes: "Sí", 
+            balcon: "Sí", 
+            bbq: "Sí", 
+            jacuzzi: "Sí", 
+            spa: "Sí" 
+        }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
+},
 };
 
 function getPropertyImages() {
