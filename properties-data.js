@@ -620,6 +620,46 @@ price: "$170.000.000",
     },
     pagos: ["efectivo", "hipotecario", "fna"]
 },
+22: {
+    title: "Apartamento Remodelado en Parque Campestre Etapa 3 - Soacha",
+    location: "Parque Campestre Etapa 3, Soacha, Cundinamarca",
+    price: "$149.000.000",
+    badge: "Negociable",
+    images: [
+        "images/apartamentos/apartamento_22/b2_sala_1.jpg",
+        "images/apartamentos/apartamento_22/b2_sala_2.jpg",
+        "images/apartamentos/apartamento_22/b2_sala_cocina.jpg",
+
+        "images/apartamentos/apartamento_22/b2_cocina_1.jpg",
+        "images/apartamentos/apartamento_22/b2_cocina_2.jpg",
+        "images/apartamentos/apartamento_22/b2_cocina_3.jpg",
+
+        "images/apartamentos/apartamento_22/b2_habitacion_1.jpg",
+        "images/apartamentos/apartamento_22/b2_habitacion_2.jpg",
+        "images/apartamentos/apartamento_22/b2_habitacion_3.jpg",
+        "images/apartamentos/apartamento_22/b2_habitacion_4.jpg",
+        "images/apartamentos/apartamento_22/b2_habitacion_5.jpg",
+
+        "images/apartamentos/apartamento_22/b2_bano_1.jpg",
+        "images/apartamentos/apartamento_22/b2_bano_2.jpg",
+        "images/apartamentos/apartamento_22/b2_bano_3.jpg",
+        "images/apartamentos/apartamento_22/b2_bano_4.jpg",
+
+        "images/apartamentos/apartamento_22/b2_corredor.jpg",
+        "images/apartamentos/apartamento_22/b2_vista_jardin.jpg",
+
+        "images/apartamentos/apartamento_22/b2_lobby_1.jpg",
+        "images/apartamentos/apartamento_22/b2_lobby_2.jpg",
+        "images/apartamentos/apartamento_22/b2_lobby_3.jpg"
+    ],
+    description: "¡Oportunidad única! Se vende apartamento totalmente remodelado en Parque Campestre Etapa 3, Soacha. Cuenta con 48,22 m², 3 habitaciones, 2 baños, cocina integral nueva y sala-comedor con excelente distribución. Ubicado en piso 4 (sin ascensor) con vista panorámica e iluminación natural. Parqueadero comunal. Conjunto con vigilancia 24/7, zonas verdes y entrada renovada. Libre de deudas, listo para escriturar de inmediato. Ideal para quienes buscan comprar sin invertir en remodelaciones.",
+    details: {
+        building: { conjunto: "Parque Campestre Etapa 3", estrato: "3", antiguedad: "No especificado", piso: "4", acceso: "Escaleras" },
+        distribution: { area: "48,22 m²", habitaciones: "3", banos: "2", garajes: "Comunal", ascensores: "No" },
+        features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "24 horas", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí", remodelado: "Sí", iluminacion: "Alta" }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
+},
 };
 
 function getPropertyImages() {
