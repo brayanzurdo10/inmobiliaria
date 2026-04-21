@@ -509,7 +509,62 @@ price: "$170.000.000",
     },
     pagos: ["efectivo"]
 },
-19: { title: "Apartamento en Venta Conjunto Verónica - Ciudad Verde", location: "Ciudad Verde, Soacha, Cundinamarca", price: "$133.000.000", badge: "Disponible", images: [ "images/apartamentos/apartamento_19/sala_1.jpg", "images/apartamentos/apartamento_19/sala_2.jpg", "images/apartamentos/apartamento_19/sala_3.jpg", "images/apartamentos/apartamento_19/cocina.jpg", "images/apartamentos/apartamento_19/habitacion_1.jpg", "images/apartamentos/apartamento_19/habitacion_2.jpg", "images/apartamentos/apartamento_19/habitacion_3.jpg", "images/apartamentos/apartamento_19/habitacion_4.jpg" ], description: "Espectacular apartamento ubicado en el conjunto Verónica en Ciudad Verde. Cuenta con 44 m², 2 habitaciones, 1 baño, sala comedor, cocina integral y está completamente remodelado con pisos laminados en todas sus áreas. Ubicado en piso 6 con vista interior tipo penthouse. Dispone de parqueadero comunal y excelente ubicación cerca a los centros comerciales Miraflores y Prado Verde. Se recibe pago en efectivo, crédito con todos los bancos y Fondo Nacional del Ahorro.", details: { building: { conjunto: "Verónica", estrato: "3", antiguedad: "No especificado", piso: "6", acceso: "Escaleras" }, distribution: { area: "44 m²", habitaciones: "2", banos: "1", garajes: "Comunal", ascensores: "No especificado" }, features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí", remodelado: "Sí", pisos: "Laminados" } }, pagos: ["efectivo", "hipotecario", "fna"] },
+19: {
+    title: "Apartamento en Venta Conjunto Verónica - Ciudad Verde",
+    location: "Ciudad Verde, Soacha, Cundinamarca",
+    price: "$133.000.000",
+    badge: "Disponible",
+    images: [
+        "images/apartamentos/apartamento_19/sala_1.jpg",
+        "images/apartamentos/apartamento_19/sala_2.jpg",
+
+        "images/apartamentos/apartamento_19/cocina_1.jpg",
+        "images/apartamentos/apartamento_19/cocina_2.jpg",
+
+        "images/apartamentos/apartamento_19/corredor.jpg",
+
+        "images/apartamentos/apartamento_19/habitacion_1.jpg",
+        "images/apartamentos/apartamento_19/habitacion_2.jpg",
+        "images/apartamentos/apartamento_19/habitacion_3.jpg",
+        "images/apartamentos/apartamento_19/habitacion_4.jpg",
+        "images/apartamentos/apartamento_19/habitacion_5.jpg",
+        "images/apartamentos/apartamento_19/habitacion_6.jpg",
+
+        "images/apartamentos/apartamento_19/bano_1.jpg",
+
+        "images/apartamentos/apartamento_19/vista_exterior.jpg"
+    ],
+    description: "Espectacular apartamento ubicado en el conjunto Verónica en Ciudad Verde. Cuenta con amplios espacios, excelente iluminación natural, varias habitaciones, 1 baño, sala comedor, cocina integral y una hermosa vista exterior. Ubicado en piso 6 con excelente distribución interna, ideal para familias que buscan comodidad y buena ubicación. Dispone de parqueadero comunal y cercanía a centros comerciales como Miraflores y Prado Verde. Se recibe pago en efectivo, crédito con todos los bancos y Fondo Nacional del Ahorro.",
+    details: {
+        building: {
+            conjunto: "Verónica",
+            estrato: "3",
+            antiguedad: "No especificado",
+            piso: "6",
+            acceso: "Escaleras"
+        },
+        distribution: {
+            area: "44 m²",
+            habitaciones: "3",
+            banos: "1",
+            garajes: "Comunal",
+            ascensores: "No especificado"
+        },
+        features: {
+            tipo: "Apartamento",
+            gas: "Sí",
+            parqueadero: "Comunal",
+            porteria: "Sí",
+            lavanderia: "Sí",
+            salonSocial: "No especificado",
+            parqueInfantil: "Sí",
+            zonasVerdes: "Sí",
+            remodelado: "Sí",
+            pisos: "Cerámica y laminados"
+        }
+    },
+    pagos: ["efectivo", "hipotecario", "fna"]
+},
 
 20: {
     title: "Casa en Venta Usme Pueblo - Conjunto Residencial El Sol",
