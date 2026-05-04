@@ -361,7 +361,7 @@ price: "$153.000.000",
         distribution: { area: "43 m²", habitaciones: "3", banos: "1", garajes: "Comunal", ascensores: "No" },
         features: { tipo: "Apartamento", gas: "Sí", parqueadero: "Comunal", porteria: "Sí", lavanderia: "Sí", salonSocial: "No especificado", parqueInfantil: "Sí", zonasVerdes: "Sí" }
     },
-    pagos: ["efectivo", "hipotecario", "fna"]
+    pagos: ["efectivo", "hipotecario",]
 },
 15:{
     title: "Casa en Bosa Porvenir - Alameda del Portal 3 Pisos Esquinera",
