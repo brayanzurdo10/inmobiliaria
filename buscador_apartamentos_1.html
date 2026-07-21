@@ -246,9 +246,17 @@
   <!-- STEP 3: ZONAS -->
   <div class="card hidden" id="step3">
     <h2>3. Zonas disponibles dentro del presupuesto <span class="badge" id="totalMatches"></span></h2>
-    <p class="muted">Muéstrale esta lista al cliente y pregúntale cuál zona le interesa.</p>
+    <p class="muted">Haz clic en una zona para ver y elegir apartamentos puntuales, o genera de una vez el mensaje con el desglose de zonas para que el cliente elija.</p>
     <div class="zona-list" id="zonaList"></div>
+    <button class="gold" id="btnMensajeZonas" style="margin-top:16px;">Generar mensaje con estas zonas →</button>
     <button class="secondary" onclick="goToStep(2)" style="margin-top:16px;">← Volver</button>
+
+    <div id="mensajeZonasBox" class="hidden" style="margin-top:20px;">
+      <h2>Mensaje listo para copiar</h2>
+      <textarea id="mensajeZonasFinal"></textarea>
+      <button id="btnCopiarZonas">Copiar mensaje</button>
+      <span class="copy-ok hidden" id="copyOkZonas">✓ Copiado</span>
+    </div>
   </div>
 
   <!-- STEP 4: PROPIEDADES + MENSAJE -->
@@ -281,6 +289,8 @@ let filtrados = [];
 let zonaSeleccionada = null;
 let propsZona = [];
 let mapaLinks = {}; // nid -> property_id
+let ultimoConteo = {};
+let ultimoTotal = 0;
 
 const fmt = n => n ? new Intl.NumberFormat('es-CO').format(n) : '—';
 
@@ -356,6 +366,8 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
     const zona = p.zona_grande || p.barrio || p.ciudad || 'Sin especificar';
     conteo[zona] = (conteo[zona]||0)+1;
   });
+  ultimoConteo = conteo;
+  ultimoTotal = filtrados.length;
 
   const maxCount = Math.max(...Object.values(conteo));
   const zonaListEl = document.getElementById('zonaList');
@@ -373,7 +385,53 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
   });
 
   document.getElementById('totalMatches').innerText = filtrados.length + ' en total';
+  document.getElementById('mensajeZonasBox').classList.add('hidden');
   goToStep(3);
+});
+
+document.getElementById('btnMensajeZonas').addEventListener('click', function(){
+  if(!ultimoTotal){
+    return;
+  }
+  const entradas = Object.entries(ultimoConteo).sort((a,b)=>b[1]-a[1]);
+  const grandes = entradas.filter(([,c])=>c>=2);
+  const chicas = entradas.filter(([,c])=>c<2);
+
+  let msg = `¡Perfecto! 🙌 Con esa información ya tengo varias opciones que se ajustan a lo que buscas.\n\n`;
+  msg += `Actualmente tengo ${ultimoTotal} apartamentos dentro de tu presupuesto, en estas zonas:\n\n`;
+
+  grandes.forEach(([zona,count])=>{
+    msg += `📍 ${zona} (${count} opciones)\n`;
+  });
+  if(chicas.length){
+    const nombres = chicas.map(([zona])=>zona).join(', ');
+    msg += `📍 ${nombres} (1 opción cada una)\n`;
+  }
+
+  msg += `\n¿Cuál de estas zonas te llama más la atención? Con esa te envío las opciones puntuales con fotos, precios y toda la info detallada 😊`;
+
+  document.getElementById('mensajeZonasFinal').value = msg;
+  document.getElementById('mensajeZonasBox').classList.remove('hidden');
+});
+
+document.getElementById('btnCopiarZonas').addEventListener('click', async function(){
+  const ta = document.getElementById('mensajeZonasFinal');
+  ta.select();
+  ta.setSelectionRange(0, 999999);
+  let copiado = false;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(ta.value);
+      copiado = true;
+    }
+  }catch(e){}
+  if(!copiado){
+    try{ copiado = document.execCommand('copy'); }catch(e){}
+  }
+  const ok = document.getElementById('copyOkZonas');
+  ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
+  ok.classList.remove('hidden');
+  if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
 });
 
 function seleccionarZona(zona){
