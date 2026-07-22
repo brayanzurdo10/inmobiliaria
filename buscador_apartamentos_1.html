@@ -238,6 +238,10 @@
         <label>Habitaciones mínimas (opcional)</label>
         <input type="number" id="habMin" placeholder="Ej: 2">
       </div>
+      <div>
+        <label>Área mínima en m² (opcional)</label>
+        <input type="number" id="areaMin" placeholder="Ej: 50">
+      </div>
     </div>
     <button id="btnToStep3">Ver zonas disponibles →</button>
     <button class="secondary" onclick="goToStep(1)">← Volver</button>
@@ -347,19 +351,22 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
   const max = maxRaw ? parseFloat(maxRaw) : Infinity;
   const min = parseFloat(document.getElementById('presupMin').value) || 0;
   const hab = parseFloat(document.getElementById('habMin').value) || 0;
+  const areaMin = parseFloat(document.getElementById('areaMin').value) || 0;
 
   filtrados = inventario.filter(p=>{
     const precio = p.precio_venta || 0;
     const habs = p.num_habitaciones || 0;
+    const area = parseFloat(p.area) || 0;
     const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
-    return precio <= max && precio >= min && habs >= hab && !separado;
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && !separado;
   });
 
   const separadosExcluidos = inventario.filter(p=>{
     const precio = p.precio_venta || 0;
     const habs = p.num_habitaciones || 0;
+    const area = parseFloat(p.area) || 0;
     const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
-    return precio <= max && precio >= min && habs >= hab && separado;
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && separado;
   }).length;
 
   if(filtrados.length === 0){
