@@ -351,11 +351,19 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
   filtrados = inventario.filter(p=>{
     const precio = p.precio_venta || 0;
     const habs = p.num_habitaciones || 0;
-    return precio <= max && precio >= min && habs >= hab;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return precio <= max && precio >= min && habs >= hab && !separado;
   });
 
+  const separadosExcluidos = inventario.filter(p=>{
+    const precio = p.precio_venta || 0;
+    const habs = p.num_habitaciones || 0;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return precio <= max && precio >= min && habs >= hab && separado;
+  }).length;
+
   if(filtrados.length === 0){
-    document.getElementById('zonaList').innerHTML = '<div class="empty">No hay propiedades que cumplan ese presupuesto en el inventario cargado.</div>';
+    document.getElementById('zonaList').innerHTML = '<div class="empty">No hay propiedades disponibles que cumplan ese presupuesto en el inventario cargado.</div>';
     document.getElementById('totalMatches').innerText = '0 opciones';
     goToStep(3);
     return;
@@ -384,7 +392,8 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
     zonaListEl.appendChild(div);
   });
 
-  document.getElementById('totalMatches').innerText = filtrados.length + ' en total';
+  document.getElementById('totalMatches').innerText = filtrados.length + ' en total'
+    + (separadosExcluidos > 0 ? ` (${separadosExcluidos} separados excluidos)` : '');
   document.getElementById('mensajeZonasBox').classList.add('hidden');
   goToStep(3);
 });
@@ -450,12 +459,17 @@ function seleccionarZona(zona){
   propsZona.forEach((p, idx)=>{
     const nidStr = String(p.nid);
     const linkAuto = mapaLinks[nidStr] ? construirLinkTuficha(mapaLinks[nidStr]) : '';
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    const tieneBono = p.bonus_value && p.bonus_value > 0;
     const div = document.createElement('div');
     div.className = 'prop-card';
     div.innerHTML = `
       <input type="checkbox" id="chk${idx}" data-idx="${idx}">
       <div class="info">
-        <div class="titulo">${p.conjunto || p.titulo || 'Apartamento'} — ${p.barrio || ''}</div>
+        <div class="titulo">${p.conjunto || p.titulo || 'Apartamento'} — ${p.barrio || ''}
+          ${separado ? '<span class="badge" style="background:#F3D9D9;color:var(--danger);">Separado</span>' : ''}
+          ${tieneBono ? `<span class="badge" style="background:#D9EEE6;color:var(--success);">Bono $${fmt(p.bonus_value)}</span>` : ''}
+        </div>
         <div class="precio">$${fmt(p.precio_venta)}</div>
         <div class="meta">
           ${p.area || '—'} m² · ${p.num_habitaciones || '—'} hab · ${p.banos || '—'} baños ·
@@ -513,12 +527,16 @@ document.getElementById('btnGenerar').addEventListener('click', function(){
   let msg = `¡Aquí tienes las mejores opciones que encontré para ti en *${zonaSeleccionada}* 🏡✨\n\n`;
 
   seleccion.forEach((p, i)=>{
-    msg += `*Opción ${i+1}: ${p.conjunto || p.titulo}*\n`;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    const tieneBono = p.bonus_value && p.bonus_value > 0;
+    msg += `*Opción ${i+1}: ${p.conjunto || p.titulo}*${separado ? ' ⚠️ (SEPARADO)' : ''}\n`;
     msg += `📍 ${p.barrio || ''}, ${p.ciudad || ''}\n`;
     msg += `💰 $${fmt(p.precio_venta)}\n`;
     msg += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
     msg += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
     msg += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
+    if(tieneBono) msg += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
+    if(separado) msg += `⚠️ Este inmueble está separado — confirmemos disponibilidad antes de avanzar\n`;
     msg += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
   });
 
