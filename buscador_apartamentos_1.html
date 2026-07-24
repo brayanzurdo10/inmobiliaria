@@ -243,6 +243,20 @@
         <input type="number" id="areaMin" placeholder="Ej: 50">
       </div>
     </div>
+    <div class="row" style="margin-top:14px;">
+      <div>
+        <label>Filtro de piso (opcional)</label>
+        <select id="pisoTipo">
+          <option value="">Sin filtro de piso</option>
+          <option value="exacto">Piso exacto</option>
+          <option value="maximo">Piso máximo (hasta este piso)</option>
+        </select>
+      </div>
+      <div>
+        <label>Número de piso</label>
+        <input type="number" id="pisoValor" placeholder="Ej: 3">
+      </div>
+    </div>
     <button id="btnToStep3">Ver zonas disponibles →</button>
     <button class="secondary" onclick="goToStep(1)">← Volver</button>
   </div>
@@ -352,13 +366,24 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
   const min = parseFloat(document.getElementById('presupMin').value) || 0;
   const hab = parseFloat(document.getElementById('habMin').value) || 0;
   const areaMin = parseFloat(document.getElementById('areaMin').value) || 0;
+  const pisoTipo = document.getElementById('pisoTipo').value;
+  const pisoValor = parseFloat(document.getElementById('pisoValor').value);
+
+  function cumplePiso(p){
+    if(!pisoTipo || isNaN(pisoValor)) return true;
+    const piso = parseFloat(p.num_piso);
+    if(isNaN(piso)) return false;
+    if(pisoTipo === 'exacto') return piso === pisoValor;
+    if(pisoTipo === 'maximo') return piso <= pisoValor;
+    return true;
+  }
 
   filtrados = inventario.filter(p=>{
     const precio = p.precio_venta || 0;
     const habs = p.num_habitaciones || 0;
     const area = parseFloat(p.area) || 0;
     const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
-    return precio <= max && precio >= min && habs >= hab && area >= areaMin && !separado;
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && cumplePiso(p) && !separado;
   });
 
   const separadosExcluidos = inventario.filter(p=>{
@@ -366,7 +391,7 @@ document.getElementById('btnToStep3').addEventListener('click', function(){
     const habs = p.num_habitaciones || 0;
     const area = parseFloat(p.area) || 0;
     const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
-    return precio <= max && precio >= min && habs >= hab && area >= areaMin && separado;
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && cumplePiso(p) && separado;
   }).length;
 
   if(filtrados.length === 0){
