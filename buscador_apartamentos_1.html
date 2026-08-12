@@ -218,7 +218,30 @@
       <p class="muted" id="jsonStatus" style="margin-top:8px;"></p>
     </div>
 
-    <button id="btnToStep2" disabled>Continuar →</button>
+    <button id="btnToStep2" disabled>Continuar por presupuesto →</button>
+    <button class="secondary" id="btnToBarrio" disabled>🔎 Buscar por barrio en vez de presupuesto</button>
+  </div>
+
+  <!-- STEP BARRIO: BÚSQUEDA POR BARRIO/ZONA -->
+  <div class="card hidden" id="stepBarrio">
+    <h2>Buscar por barrio o zona cercana</h2>
+    <p class="muted">Escribe el barrio que te preguntó el cliente y, si investigaste barrios cercanos (como en el ejemplo de "El Ensueño"), agrégalos también separados por comas.</p>
+    <label>Barrio(s) a buscar</label>
+    <input type="text" id="barrioInput" placeholder="Ej: El Ensueño, Madelena, Casa Grande, Atlanta">
+    <div class="row" style="margin-top:14px;">
+      <div>
+        <label>Presupuesto máximo (opcional)</label>
+        <input type="number" id="presupMaxBarrio" placeholder="Ej: 210000000">
+      </div>
+      <div>
+        <label>Habitaciones mínimas (opcional)</label>
+        <input type="number" id="habMinBarrio" placeholder="Ej: 2">
+      </div>
+    </div>
+    <button id="btnBuscarBarrio" style="margin-top:14px;">Buscar →</button>
+    <button class="secondary" onclick="goToStepId('step1')">← Volver</button>
+
+    <div id="resultadosBarrio" style="margin-top:18px;"></div>
   </div>
 
   <!-- STEP 2: PRESUPUESTO -->
@@ -354,11 +377,185 @@ document.getElementById('fileInput').addEventListener('change', function(e){
     document.getElementById('fileStatus').innerHTML =
       `✅ ${inventario.length} propiedades cargadas correctamente.`;
     document.getElementById('btnToStep2').disabled = false;
+    document.getElementById('btnToBarrio').disabled = false;
   };
   reader.readAsArrayBuffer(file);
 });
 
 document.getElementById('btnToStep2').addEventListener('click', ()=>goToStep(2));
+
+function mostrarSoloId(id){
+  ['step1','step2','step3','step4','stepBarrio'].forEach(sid=>{
+    document.getElementById(sid).classList.toggle('hidden', sid!==id);
+  });
+}
+
+document.getElementById('btnToBarrio').addEventListener('click', ()=>mostrarSoloId('stepBarrio'));
+
+function goToStepId(id){
+  mostrarSoloId(id);
+}
+
+document.getElementById('btnBuscarBarrio').addEventListener('click', function(){
+  const barriosTexto = document.getElementById('barrioInput').value.trim();
+  if(!barriosTexto){
+    document.getElementById('resultadosBarrio').innerHTML = '<div class="empty">Escribe al menos un barrio para buscar.</div>';
+    return;
+  }
+  const listaBarrios = barriosTexto.split(',').map(b=>b.trim().toLowerCase()).filter(Boolean);
+  const maxRaw = document.getElementById('presupMaxBarrio').value;
+  const max = maxRaw ? parseFloat(maxRaw) : Infinity;
+  const hab = parseFloat(document.getElementById('habMinBarrio').value) || 0;
+
+  const resultados = inventario.filter(p=>{
+    const barrioProp = (p.barrio || '').toLowerCase();
+    const coincide = listaBarrios.some(b => barrioProp === b || barrioProp.includes(b) || b.includes(barrioProp));
+    const precio = p.precio_venta || 0;
+    const habs = p.num_habitaciones || 0;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return coincide && precio <= max && habs >= hab && !separado;
+  });
+
+  // ordenar: coincidencia exacta con el primer barrio escrito primero
+  resultados.sort((a,b)=>{
+    const aExacto = (a.barrio||'').toLowerCase() === listaBarrios[0] ? 0 : 1;
+    const bExacto = (b.barrio||'').toLowerCase() === listaBarrios[0] ? 0 : 1;
+    return aExacto - bExacto;
+  });
+
+  renderResultadosBarrio(resultados, listaBarrios);
+});
+
+function renderResultadosBarrio(resultados, listaBarrios){
+  const cont = document.getElementById('resultadosBarrio');
+  if(resultados.length === 0){
+    cont.innerHTML = '<div class="empty">No hay opciones disponibles en esos barrios con los filtros dados.</div>';
+    return;
+  }
+
+  let html = `
+    <p class="muted"><b>${resultados.length}</b> opciones encontradas en: ${listaBarrios.join(', ')}</p>
+    <label style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);margin-bottom:12px;">
+      <input type="checkbox" id="selectAllBarrio" style="width:18px;height:18px;">
+      Seleccionar todas
+    </label>
+    <div id="propListBarrio"></div>
+    <button class="gold" id="btnGenerarBarrio" style="margin-top:10px;">Generar mensaje de WhatsApp →</button>
+    <p class="muted hidden" id="avisoGenerarBarrio" style="margin-top:10px;color:var(--danger);"></p>
+    <div id="mensajeBarrioBox" class="hidden" style="margin-top:20px;">
+      <h2>Mensaje listo para copiar</h2>
+      <textarea id="mensajeBarrioFinal"></textarea>
+      <button id="btnCopiarBarrio">Copiar mensaje</button>
+      <span class="copy-ok hidden" id="copyOkBarrio">✓ Copiado</span>
+    </div>
+  `;
+  cont.innerHTML = html;
+
+  const listEl = document.getElementById('propListBarrio');
+  resultados.forEach((p, idx)=>{
+    const nidStr = String(p.nid);
+    const linkAuto = mapaLinks[nidStr] ? construirLinkTuficha(mapaLinks[nidStr]) : '';
+    const tieneBono = p.bonus_value && p.bonus_value > 0;
+    const div = document.createElement('div');
+    div.className = 'prop-card';
+    div.innerHTML = `
+      <input type="checkbox" id="chkB${idx}" data-idx="${idx}">
+      <div class="info">
+        <div class="titulo">${p.conjunto || p.titulo || 'Apartamento'} — ${p.barrio || ''}
+          ${tieneBono ? `<span class="badge" style="background:#D9EEE6;color:var(--success);">Bono $${fmt(p.bonus_value)}</span>` : ''}
+        </div>
+        <div class="precio">$${fmt(p.precio_venta)}</div>
+        <div class="meta">
+          ${p.area || '—'} m² · ${p.num_habitaciones || '—'} hab · ${p.banos || '—'} baños ·
+          ${p.garajes ? p.garajes + ' garaje(s)' : 'sin garaje'} ·
+          Piso ${p.num_piso || '—'} · Admin: $${fmt(p.costo_administracion)}
+        </div>
+        <div class="meta">Dirección: ${p.direccion || '—'} · Crédito aceptado: ${p.accepted_credit_type || 'consultar'}</div>
+        <a href="${p.url}" target="_blank">Ver en Habi (referencia, NID: ${p.nid}) ↗</a>
+        <div style="margin-top:8px;">
+          <label style="margin-bottom:3px;">
+            Link de ficha técnica (tuficha.co)
+            ${linkAuto ? '<span class="badge">Autocompletado ✓</span>' : '— pégalo aquí'}
+          </label>
+          <input type="text" class="linkFicha" id="linkB${idx}" placeholder="https://tuficha.co/inmueble/..." value="${linkAuto}">
+        </div>
+      </div>
+    `;
+    listEl.appendChild(div);
+  });
+
+  document.getElementById('selectAllBarrio').onchange = function(){
+    const marcar = this.checked;
+    resultados.forEach((p, idx)=>{
+      const chk = document.getElementById('chkB'+idx);
+      if(chk) chk.checked = marcar;
+    });
+  };
+
+  document.getElementById('btnGenerarBarrio').addEventListener('click', function(){
+    const seleccion = [];
+    let faltanLinks = [];
+    resultados.forEach((p, idx)=>{
+      const chk = document.getElementById('chkB'+idx);
+      if(chk && chk.checked){
+        const linkInput = document.getElementById('linkB'+idx);
+        const link = linkInput ? linkInput.value.trim() : '';
+        if(!link) faltanLinks.push(p.conjunto || p.titulo || ('propiedad ' + (idx+1)));
+        seleccion.push({...p, linkFicha: link});
+      }
+    });
+
+    const avisoEl = document.getElementById('avisoGenerarBarrio');
+    if(seleccion.length === 0){
+      avisoEl.innerHTML = '⚠️ Selecciona al menos una opción para incluir en el mensaje.';
+      avisoEl.classList.remove('hidden');
+      return;
+    }
+
+    let msg = `¡Aquí tienes ${seleccion.length} opciones que encontré cerca de lo que buscas 🏡✨\n\n`;
+    seleccion.forEach((p, i)=>{
+      const tieneBono = p.bonus_value && p.bonus_value > 0;
+      msg += `*Opción ${i+1}: ${p.conjunto || p.titulo}*\n`;
+      msg += `📍 ${p.barrio || ''}, ${p.ciudad || ''} — ${p.direccion || ''}\n`;
+      msg += `💰 $${fmt(p.precio_venta)}\n`;
+      msg += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
+      msg += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
+      msg += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
+      if(tieneBono) msg += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
+      msg += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
+    });
+    msg += `💳 Recibimos créditos hipotecarios, FNA, Caja Honor, te ayudamos a tramitar crédito.\n\n`;
+    msg += `¿Cuál de estas te gustaría conocer más a fondo? Con gusto te agendo una visita 🤝`;
+
+    document.getElementById('mensajeBarrioFinal').value = msg;
+    document.getElementById('mensajeBarrioBox').classList.remove('hidden');
+
+    if(faltanLinks.length > 0){
+      avisoEl.innerHTML = `⚠️ El mensaje se generó, pero falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
+      avisoEl.classList.remove('hidden');
+    } else {
+      avisoEl.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('btnCopiarBarrio').addEventListener('click', async function(){
+    const ta = document.getElementById('mensajeBarrioFinal');
+    ta.select();
+    ta.setSelectionRange(0, 999999);
+    let copiado = false;
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(ta.value);
+        copiado = true;
+      }
+    }catch(e){}
+    if(!copiado){ try{ copiado = document.execCommand('copy'); }catch(e){} }
+    const ok = document.getElementById('copyOkBarrio');
+    ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
+    ok.classList.remove('hidden');
+    if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
+  });
+}
 
 document.getElementById('btnToStep3').addEventListener('click', function(){
   const maxRaw = document.getElementById('presupMax').value;
@@ -556,7 +753,7 @@ document.getElementById('btnGenerar').addEventListener('click', function(){
     return;
   }
 
-  let msg = `¡Aquí tienes las mejores opciones que encontré para ti en *${zonaSeleccionada}* 🏡✨\n\n`;
+  let msg = `¡Aquí tienes ${seleccion.length} opciones que encontré para ti en *${zonaSeleccionada}* 🏡✨\n\n`;
 
   seleccion.forEach((p, i)=>{
     const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
