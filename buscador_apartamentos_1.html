@@ -311,14 +311,16 @@
     </label>
     <div id="propList"></div>
     <button class="secondary" onclick="goToStep(3)" style="margin-top:10px;">← Volver a zonas</button>
+    <div style="margin:14px 0;">
+      <label>Dividir en tandas de (opcional, deja vacío para un solo mensaje)</label>
+      <input type="number" id="tandaSize" placeholder="Ej: 10" style="max-width:150px;">
+    </div>
     <button class="gold" id="btnGenerar">Generar mensaje de WhatsApp →</button>
     <p class="muted hidden" id="avisoGenerar" style="margin-top:10px;color:var(--danger);"></p>
 
     <div id="mensajeBox" class="hidden" style="margin-top:20px;">
-      <h2>Mensaje listo para copiar</h2>
-      <textarea id="mensajeFinal"></textarea>
-      <button id="btnCopiar">Copiar mensaje</button>
-      <span class="copy-ok hidden" id="copyOk">✓ Copiado</span>
+      <h2>Mensaje(s) listo(s) para copiar</h2>
+      <div id="mensajesContainer"></div>
     </div>
   </div>
 
@@ -345,8 +347,8 @@ document.getElementById('btnAplicarJson').addEventListener('click', function(){
     document.getElementById('jsonStatus').innerText = 'Pega el JSON primero.';
     return;
   }
-  const nidRegex = /"property_nid"\s*:\s*(\d+)/g;
-  const idRegex = /"property_id"\s*:\s*(\d+)/;
+  const nidRegex = /\\?"property_nid\\?"\s*:\s*(\d+)/g;
+  const idRegex = /\\?"property_id\\?"\s*:\s*(\d+)/;
   let match;
   let count = 0;
   while((match = nidRegex.exec(texto)) !== null){
@@ -440,13 +442,15 @@ function renderResultadosBarrio(resultados, listaBarrios){
       Seleccionar todas
     </label>
     <div id="propListBarrio"></div>
+    <div style="margin:14px 0;">
+      <label>Dividir en tandas de (opcional, deja vacío para un solo mensaje)</label>
+      <input type="number" id="tandaSizeBarrio" placeholder="Ej: 10" style="max-width:150px;">
+    </div>
     <button class="gold" id="btnGenerarBarrio" style="margin-top:10px;">Generar mensaje de WhatsApp →</button>
     <p class="muted hidden" id="avisoGenerarBarrio" style="margin-top:10px;color:var(--danger);"></p>
     <div id="mensajeBarrioBox" class="hidden" style="margin-top:20px;">
-      <h2>Mensaje listo para copiar</h2>
-      <textarea id="mensajeBarrioFinal"></textarea>
-      <button id="btnCopiarBarrio">Copiar mensaje</button>
-      <span class="copy-ok hidden" id="copyOkBarrio">✓ Copiado</span>
+      <h2>Mensaje(s) listo(s) para copiar</h2>
+      <div id="mensajesContainerBarrio"></div>
     </div>
   `;
   cont.innerHTML = html;
@@ -512,48 +516,17 @@ function renderResultadosBarrio(resultados, listaBarrios){
       return;
     }
 
-    let msg = `¡Aquí tienes ${seleccion.length} opciones que encontré cerca de lo que buscas 🏡✨\n\n`;
-    seleccion.forEach((p, i)=>{
-      const tieneBono = p.bonus_value && p.bonus_value > 0;
-      msg += `*Opción ${i+1}: ${p.conjunto || p.titulo}*\n`;
-      msg += `📍 ${p.barrio || ''}, ${p.ciudad || ''} — ${p.direccion || ''}\n`;
-      msg += `💰 $${fmt(p.precio_venta)}\n`;
-      msg += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
-      msg += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
-      msg += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
-      if(tieneBono) msg += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
-      msg += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
-    });
-    msg += `💳 Recibimos créditos hipotecarios, FNA, Caja Honor, te ayudamos a tramitar crédito.\n\n`;
-    msg += `¿Cuál de estas te gustaría conocer más a fondo? Con gusto te agendo una visita 🤝`;
-
-    document.getElementById('mensajeBarrioFinal').value = msg;
+    const tandaSize = parseInt(document.getElementById('tandaSizeBarrio').value) || 0;
+    const tandas = dividirEnTandas(seleccion, tandaSize);
+    renderMensajes(tandas, listaBarrios.join(', '), 'mensajesContainerBarrio', 'mensajeBarrioFinal');
     document.getElementById('mensajeBarrioBox').classList.remove('hidden');
 
     if(faltanLinks.length > 0){
-      avisoEl.innerHTML = `⚠️ El mensaje se generó, pero falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
+      avisoEl.innerHTML = `⚠️ Falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
       avisoEl.classList.remove('hidden');
     } else {
       avisoEl.classList.add('hidden');
     }
-  });
-
-  document.getElementById('btnCopiarBarrio').addEventListener('click', async function(){
-    const ta = document.getElementById('mensajeBarrioFinal');
-    ta.select();
-    ta.setSelectionRange(0, 999999);
-    let copiado = false;
-    try{
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        await navigator.clipboard.writeText(ta.value);
-        copiado = true;
-      }
-    }catch(e){}
-    if(!copiado){ try{ copiado = document.execCommand('copy'); }catch(e){} }
-    const ok = document.getElementById('copyOkBarrio');
-    ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
-    ok.classList.remove('hidden');
-    if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
   });
 }
 
@@ -732,6 +705,73 @@ function seleccionarZona(zona){
   goToStep(4);
 }
 
+function construirBloqueOpcion(p, numero){
+  const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+  const tieneBono = p.bonus_value && p.bonus_value > 0;
+  let bloque = `*Opción ${numero}: ${p.conjunto || p.titulo}*${separado ? ' ⚠️ (SEPARADO)' : ''}\n`;
+  bloque += `📍 ${p.barrio || ''}, ${p.ciudad || ''}\n`;
+  bloque += `💰 $${fmt(p.precio_venta)}\n`;
+  bloque += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
+  bloque += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
+  bloque += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
+  if(tieneBono) bloque += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
+  if(separado) bloque += `⚠️ Este inmueble está separado — confirmemos disponibilidad antes de avanzar\n`;
+  bloque += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
+  return bloque;
+}
+
+function dividirEnTandas(arr, tam){
+  if(!tam || tam >= arr.length) return [arr];
+  const tandas = [];
+  for(let i=0; i<arr.length; i+=tam) tandas.push(arr.slice(i, i+tam));
+  return tandas;
+}
+
+function renderMensajes(tandas, tituloBase, containerId='mensajesContainer', idPrefix='mensajeFinal'){
+  const cont = document.getElementById(containerId);
+  cont.innerHTML = '';
+  tandas.forEach((tanda, idx) => {
+    let msg = tandas.length > 1
+      ? `¡Aquí tienes ${tanda.length} opciones más (parte ${idx+1} de ${tandas.length}) que encontré para ti en *${tituloBase}* 🏡✨\n\n`
+      : `¡Aquí tienes ${tanda.length} opciones que encontré para ti en *${tituloBase}* 🏡✨\n\n`;
+    tanda.forEach((p, i) => { msg += construirBloqueOpcion(p, i+1); });
+    msg += `💳 Recibimos créditos hipotecarios, FNA, Caja Honor, te ayudamos a tramitar crédito.\n\n`;
+    msg += `¿Cuál de estas te gustaría conocer más a fondo? Con gusto te agendo una visita 🤝`;
+
+    const bloqueDiv = document.createElement('div');
+    bloqueDiv.style.marginBottom = '18px';
+    bloqueDiv.innerHTML = `
+      <p class="muted" style="font-weight:600;">${tandas.length > 1 ? `Mensaje ${idx+1} de ${tandas.length}` : 'Mensaje'}</p>
+      <textarea id="${idPrefix}${idx}">${msg}</textarea>
+      <button class="btnCopiarTanda" data-idx="${idx}" data-prefix="${idPrefix}">Copiar mensaje ${tandas.length > 1 ? (idx+1) : ''}</button>
+      <span class="copy-ok hidden" id="copyOk_${idPrefix}${idx}">✓ Copiado</span>
+    `;
+    cont.appendChild(bloqueDiv);
+  });
+
+  cont.querySelectorAll('.btnCopiarTanda').forEach(btn=>{
+    btn.addEventListener('click', async function(){
+      const idx = this.dataset.idx;
+      const prefix = this.dataset.prefix;
+      const ta = document.getElementById(prefix+idx);
+      ta.select();
+      ta.setSelectionRange(0, 999999);
+      let copiado = false;
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          await navigator.clipboard.writeText(ta.value);
+          copiado = true;
+        }
+      }catch(e){}
+      if(!copiado){ try{ copiado = document.execCommand('copy'); }catch(e){} }
+      const ok = document.getElementById('copyOk_'+prefix+idx);
+      ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
+      ok.classList.remove('hidden');
+      if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
+    });
+  });
+}
+
 document.getElementById('btnGenerar').addEventListener('click', function(){
   const seleccion = [];
   let faltanLinks = [];
@@ -753,60 +793,16 @@ document.getElementById('btnGenerar').addEventListener('click', function(){
     return;
   }
 
-  let msg = `¡Aquí tienes ${seleccion.length} opciones que encontré para ti en *${zonaSeleccionada}* 🏡✨\n\n`;
-
-  seleccion.forEach((p, i)=>{
-    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
-    const tieneBono = p.bonus_value && p.bonus_value > 0;
-    msg += `*Opción ${i+1}: ${p.conjunto || p.titulo}*${separado ? ' ⚠️ (SEPARADO)' : ''}\n`;
-    msg += `📍 ${p.barrio || ''}, ${p.ciudad || ''}\n`;
-    msg += `💰 $${fmt(p.precio_venta)}\n`;
-    msg += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
-    msg += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
-    msg += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
-    if(tieneBono) msg += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
-    if(separado) msg += `⚠️ Este inmueble está separado — confirmemos disponibilidad antes de avanzar\n`;
-    msg += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
-  });
-
-  msg += `💳 Recibimos créditos hipotecarios, FNA, Caja Honor, te ayudamos a tramitar crédito.\n\n`;
-  msg += `¿Cuál de estas te gustaría conocer más a fondo? Con gusto te agendo una visita 🤝`;
-
-  document.getElementById('mensajeFinal').value = msg;
+  const tandaSize = parseInt(document.getElementById('tandaSize').value) || 0;
+  const tandas = dividirEnTandas(seleccion, tandaSize);
+  renderMensajes(tandas, zonaSeleccionada);
   document.getElementById('mensajeBox').classList.remove('hidden');
 
   if(faltanLinks.length > 0){
-    avisoEl.innerHTML = `⚠️ El mensaje se generó, pero falta el link de tuficha.co para: ${faltanLinks.join(', ')}. Búscalos y pégalos manualmente en el texto antes de enviarlo.`;
+    avisoEl.innerHTML = `⚠️ Falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
     avisoEl.classList.remove('hidden');
   } else {
     avisoEl.classList.add('hidden');
-  }
-});
-
-document.getElementById('btnCopiar').addEventListener('click', async function(){
-  const ta = document.getElementById('mensajeFinal');
-  ta.select();
-  ta.setSelectionRange(0, 999999);
-  let copiado = false;
-  try{
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      await navigator.clipboard.writeText(ta.value);
-      copiado = true;
-    }
-  }catch(e){}
-  if(!copiado){
-    try{
-      copiado = document.execCommand('copy');
-    }catch(e){}
-  }
-  const ok = document.getElementById('copyOk');
-  if(copiado){
-    ok.innerText = '✓ Copiado';
-    ok.classList.remove('hidden');
-    setTimeout(()=>ok.classList.add('hidden'), 2000);
-  } else {
-    ok.innerText = 'No se pudo copiar automático — el texto ya está seleccionado, usa Ctrl+C';
-    ok.classList.remove('hidden');
   }
 });
 
