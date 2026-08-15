@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscador de Opciones · Brayan Ortegón</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --navy:#12213F;
+    --navy-light:#1D3461;
+    --gold:#C9A227;
+    --gold-soft:#E9D9A0;
+    --cream:#F7F4EE;
+    --ink:#1B1B1B;
+    --muted:#6B7280;
+    --success:#1F6F5C;
+    --danger:#B23A3A;
+    --border:#E4E0D6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:24px;
+  }
+  .wrap{max-width:1000px;margin:0 auto;}
+  header{
+    background:var(--navy);
+    color:#fff;
+    padding:24px 28px;
+    border-radius:10px;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    right:-40px;top:-40px;
+    width:160px;height:160px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    opacity:.25;
+  }
+  header h1{
+    margin:0 0 4px 0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:24px;
+    letter-spacing:.2px;
+  }
+  header p{margin:0;color:var(--gold-soft);font-size:13px;letter-spacing:.5px;text-transform:uppercase;}
+
+  .steps{display:flex;gap:8px;margin-bottom:20px;}
+  .step-pill{
+    flex:1;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:12.5px;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .step-pill.active{border-color:var(--gold);color:var(--navy);font-weight:600;background:#fffdf6;}
+  .step-pill.done{border-color:var(--success);color:var(--success);}
+  .step-num{
+    width:20px;height:20px;border-radius:50%;
+    background:var(--border);
+    color:#fff;
+    font-size:11px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .step-pill.active .step-num{background:var(--gold);}
+  .step-pill.done .step-num{background:var(--success);}
+
+  .card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:22px;
+    margin-bottom:16px;
+  }
+  .card h2{
+    font-family:Georgia,serif;
+    font-size:18px;
+    margin:0 0 14px 0;
+    color:var(--navy);
+  }
+  label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px;font-weight:600;}
+  input[type=file], input[type=number], input[type=text], select{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    font-size:14px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row > div{flex:1;min-width:160px;}
+
+  button{
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:14px;
+  }
+  button:hover{background:var(--navy-light);}
+  button.secondary{background:transparent;border:1px solid var(--navy);color:var(--navy);}
+  button.gold{background:var(--gold);color:var(--navy);}
+  button:disabled{opacity:.4;cursor:not-allowed;}
+
+  .zona-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .zona-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 14px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .zona-item:hover{border-color:var(--gold);background:#fffdf6;}
+  .zona-item .name{font-weight:600;color:var(--navy);}
+  .zona-item .bar-wrap{flex:1;margin:0 14px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+  .zona-item .bar{height:100%;background:var(--gold);}
+  .zona-item .count{font-size:13px;color:var(--muted);min-width:70px;text-align:right;}
+
+  .prop-card{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .prop-card input[type=checkbox]{margin-top:4px;width:18px;height:18px;flex-shrink:0;}
+  .prop-card .info{flex:1;}
+  .prop-card .titulo{font-weight:700;color:var(--navy);font-size:14.5px;margin-bottom:2px;}
+  .prop-card .precio{color:var(--success);font-weight:700;font-size:15px;font-family:'Courier New',monospace;}
+  .prop-card .meta{font-size:12.5px;color:var(--muted);margin-top:4px;}
+  .prop-card a{color:var(--navy);text-decoration:underline;font-size:12.5px;}
+
+  textarea{
+    width:100%;
+    min-height:220px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px;
+    font-size:13.5px;
+    font-family:'Courier New',monospace;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .muted{color:var(--muted);font-size:13px;}
+  .badge{
+    display:inline-block;
+    background:var(--gold-soft);
+    color:var(--navy);
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:20px;
+    margin-left:8px;
+  }
+  .hidden{display:none;}
+  .copy-ok{color:var(--success);font-weight:600;font-size:13px;margin-left:10px;}
+  .empty{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Buscador de Opciones</h1>
+    <p>Brayan Ortegón · Asesor Inmobiliario</p>
+  </header>
+
+  <div class="steps">
+    <div class="step-pill active" id="pill1"><div class="step-num">1</div>Cargar inventario</div>
+    <div class="step-pill" id="pill2"><div class="step-num">2</div>Presupuesto</div>
+    <div class="step-pill" id="pill3"><div class="step-num">3</div>Elegir zona</div>
+    <div class="step-pill" id="pill4"><div class="step-num">4</div>Mensaje final</div>
+  </div>
+
+  <!-- STEP 1: UPLOAD -->
+  <div class="card" id="step1">
+    <h2>1. Sube el Excel exportado de Habi</h2>
+    <label>Archivo .xlsx</label>
+    <input type="file" id="fileInput" accept=".xlsx,.xls">
+    <p class="muted" id="fileStatus" style="margin-top:10px;">Ningún archivo cargado todavía.</p>
+
+    <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:16px;">
+      <label>Opcional: pega aquí el JSON de Habi para autocompletar los links de tuficha.co</label>
+      <p class="muted" style="margin:0 0 8px 0;">
+        En Chrome: pestaña Network → Fetch/XHR → busca <b>get_estate_list</b> → clic derecho → Copy → Copy response. Pega el resultado abajo (puedes pegar varios si tu búsqueda tuvo más de una tanda).
+      </p>
+      <textarea id="jsonInput" style="min-height:100px;" placeholder='{"body":[{"property_nid":..., "property_id":...}, ...]}'></textarea>
+      <button class="secondary" id="btnAplicarJson" style="margin-top:8px;">Aplicar JSON</button>
+      <p class="muted" id="jsonStatus" style="margin-top:8px;"></p>
+    </div>
+
+    <button id="btnToStep2" disabled>Continuar por presupuesto →</button>
+    <button class="secondary" id="btnToBarrio" disabled>🔎 Buscar por barrio en vez de presupuesto</button>
+  </div>
+
+  <!-- STEP BARRIO: BÚSQUEDA POR BARRIO/ZONA -->
+  <div class="card hidden" id="stepBarrio">
+    <h2>Buscar por barrio o zona cercana</h2>
+    <p class="muted">Escribe el barrio que te preguntó el cliente y, si investigaste barrios cercanos (como en el ejemplo de "El Ensueño"), agrégalos también separados por comas.</p>
+    <label>Barrio(s) a buscar</label>
+    <input type="text" id="barrioInput" placeholder="Ej: El Ensueño, Madelena, Casa Grande, Atlanta">
+    <div class="row" style="margin-top:14px;">
+      <div>
+        <label>Presupuesto máximo (opcional)</label>
+        <input type="number" id="presupMaxBarrio" placeholder="Ej: 210000000">
+      </div>
+      <div>
+        <label>Habitaciones mínimas (opcional)</label>
+        <input type="number" id="habMinBarrio" placeholder="Ej: 2">
+      </div>
+    </div>
+    <button id="btnBuscarBarrio" style="margin-top:14px;">Buscar →</button>
+    <button class="secondary" onclick="goToStepId('step1')">← Volver</button>
+
+    <div id="resultadosBarrio" style="margin-top:18px;"></div>
+  </div>
+
+  <!-- STEP 2: PRESUPUESTO -->
+  <div class="card hidden" id="step2">
+    <h2>2. ¿Cuál es el presupuesto del cliente?</h2>
+    <p class="muted">Si ya filtraste esto directamente en Habi antes de exportar, puedes saltar este paso y darle "Ver zonas disponibles" sin llenar nada.</p>
+    <div class="row">
+      <div>
+        <label>Presupuesto máximo (opcional)</label>
+        <input type="number" id="presupMax" placeholder="Ej: 210000000">
+      </div>
+      <div>
+        <label>Presupuesto mínimo (opcional)</label>
+        <input type="number" id="presupMin" placeholder="Ej: 150000000">
+      </div>
+      <div>
+        <label>Habitaciones mínimas (opcional)</label>
+        <input type="number" id="habMin" placeholder="Ej: 2">
+      </div>
+      <div>
+        <label>Área mínima en m² (opcional)</label>
+        <input type="number" id="areaMin" placeholder="Ej: 50">
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px;">
+      <div>
+        <label>Filtro de piso (opcional)</label>
+        <select id="pisoTipo">
+          <option value="">Sin filtro de piso</option>
+          <option value="exacto">Piso exacto</option>
+          <option value="maximo">Piso máximo (hasta este piso)</option>
+        </select>
+      </div>
+      <div>
+        <label>Número de piso</label>
+        <input type="number" id="pisoValor" placeholder="Ej: 3">
+      </div>
+    </div>
+    <button id="btnToStep3">Ver zonas disponibles →</button>
+    <button class="secondary" onclick="goToStep(1)">← Volver</button>
+  </div>
+
+  <!-- STEP 3: ZONAS -->
+  <div class="card hidden" id="step3">
+    <h2>3. Zonas disponibles dentro del presupuesto <span class="badge" id="totalMatches"></span></h2>
+    <p class="muted">Haz clic en una zona para ver y elegir apartamentos puntuales, o genera de una vez el mensaje con el desglose de zonas para que el cliente elija.</p>
+    <div class="zona-list" id="zonaList"></div>
+    <button class="gold" id="btnMensajeZonas" style="margin-top:16px;">Generar mensaje con estas zonas →</button>
+    <button class="secondary" onclick="goToStep(2)" style="margin-top:16px;">← Volver</button>
+
+    <div id="mensajeZonasBox" class="hidden" style="margin-top:20px;">
+      <h2>Mensaje listo para copiar</h2>
+      <textarea id="mensajeZonasFinal"></textarea>
+      <button id="btnCopiarZonas">Copiar mensaje</button>
+      <span class="copy-ok hidden" id="copyOkZonas">✓ Copiado</span>
+    </div>
+  </div>
+
+  <!-- STEP 4: PROPIEDADES + MENSAJE -->
+  <div class="card hidden" id="step4">
+    <h2 id="zonaTitulo">4. Opciones en la zona elegida</h2>
+    <p class="muted" id="resumenLinks"></p>
+    <p class="muted">Selecciona las opciones que quieres enviar (recomendado: 3 a 5).</p>
+    <label style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);margin-bottom:12px;">
+      <input type="checkbox" id="selectAll" style="width:18px;height:18px;">
+      Seleccionar todas
+    </label>
+    <div id="propList"></div>
+    <button class="secondary" onclick="goToStep(3)" style="margin-top:10px;">← Volver a zonas</button>
+    <div style="margin:14px 0;">
+      <label>Dividir en tandas de (opcional, deja vacío para un solo mensaje)</label>
+      <input type="number" id="tandaSize" placeholder="Ej: 10" style="max-width:150px;">
+    </div>
+    <button class="gold" id="btnGenerar">Generar mensaje de WhatsApp →</button>
+    <p class="muted hidden" id="avisoGenerar" style="margin-top:10px;color:var(--danger);"></p>
+
+    <div id="mensajeBox" class="hidden" style="margin-top:20px;">
+      <h2>Mensaje(s) listo(s) para copiar</h2>
+      <div id="mensajesContainer"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let inventario = [];
+let filtrados = [];
+let zonaSeleccionada = null;
+let propsZona = [];
+let mapaLinks = {}; // nid -> property_id
+let ultimoConteo = {};
+let ultimoTotal = 0;
+
+const fmt = n => n ? new Intl.NumberFormat('es-CO').format(n) : '—';
+
+function construirLinkTuficha(propertyId){
+  return `https://tuficha.co/inmueble/${propertyId}?inmueble_id=${propertyId}&bid=17303&utm_source=Portal&utm_medium=Direct&utm_campaign=Recomms&utm_term=`;
+}
+
+document.getElementById('btnAplicarJson').addEventListener('click', function(){
+  const texto = document.getElementById('jsonInput').value;
+  if(!texto.trim()){
+    document.getElementById('jsonStatus').innerText = 'Pega el JSON primero.';
+    return;
+  }
+  const nidRegex = /\\?"property_nid\\?"\s*:\s*(\d+)/g;
+  const idRegex = /\\?"property_id\\?"\s*:\s*(\d+)/;
+  let match;
+  let count = 0;
+  while((match = nidRegex.exec(texto)) !== null){
+    const nid = match[1];
+    const ventana = texto.slice(match.index, match.index + 300);
+    const idMatch = idRegex.exec(ventana);
+    if(idMatch){
+      mapaLinks[nid] = idMatch[1];
+      count++;
+    }
+  }
+  const totalEnMemoria = Object.keys(mapaLinks).length;
+  document.getElementById('jsonStatus').innerHTML =
+    count > 0
+      ? `✅ ${count} links detectados en este pegado (${totalEnMemoria} en total acumulados). Si tu búsqueda tenía más resultados de los que ves aquí, revisa si Habi cargó más tandas al hacer scroll y pega también esas respuestas.`
+      : '⚠️ No se encontraron pares property_nid/property_id en ese texto. Revisa que sea la respuesta completa de la solicitud get_estate_list.';
+});
+
+document.getElementById('fileInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    const data = new Uint8Array(evt.target.result);
+    const wb = XLSX.read(data, {type:'array'});
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    inventario = XLSX.utils.sheet_to_json(sheet, {defval:null});
+    document.getElementById('fileStatus').innerHTML =
+      `✅ ${inventario.length} propiedades cargadas correctamente.`;
+    document.getElementById('btnToStep2').disabled = false;
+    document.getElementById('btnToBarrio').disabled = false;
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+document.getElementById('btnToStep2').addEventListener('click', ()=>goToStep(2));
+
+function mostrarSoloId(id){
+  ['step1','step2','step3','step4','stepBarrio'].forEach(sid=>{
+    document.getElementById(sid).classList.toggle('hidden', sid!==id);
+  });
+}
+
+document.getElementById('btnToBarrio').addEventListener('click', ()=>mostrarSoloId('stepBarrio'));
+
+function goToStepId(id){
+  mostrarSoloId(id);
+}
+
+document.getElementById('btnBuscarBarrio').addEventListener('click', function(){
+  const barriosTexto = document.getElementById('barrioInput').value.trim();
+  if(!barriosTexto){
+    document.getElementById('resultadosBarrio').innerHTML = '<div class="empty">Escribe al menos un barrio para buscar.</div>';
+    return;
+  }
+  const listaBarrios = barriosTexto.split(',').map(b=>b.trim().toLowerCase()).filter(Boolean);
+  const maxRaw = document.getElementById('presupMaxBarrio').value;
+  const max = maxRaw ? parseFloat(maxRaw) : Infinity;
+  const hab = parseFloat(document.getElementById('habMinBarrio').value) || 0;
+
+  const resultados = inventario.filter(p=>{
+    const barrioProp = (p.barrio || '').toLowerCase();
+    const coincide = listaBarrios.some(b => barrioProp === b || barrioProp.includes(b) || b.includes(barrioProp));
+    const precio = p.precio_venta || 0;
+    const habs = p.num_habitaciones || 0;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return coincide && precio <= max && habs >= hab && !separado;
+  });
+
+  // ordenar: coincidencia exacta con el primer barrio escrito primero
+  resultados.sort((a,b)=>{
+    const aExacto = (a.barrio||'').toLowerCase() === listaBarrios[0] ? 0 : 1;
+    const bExacto = (b.barrio||'').toLowerCase() === listaBarrios[0] ? 0 : 1;
+    return aExacto - bExacto;
+  });
+
+  renderResultadosBarrio(resultados, listaBarrios);
+});
+
+function renderResultadosBarrio(resultados, listaBarrios){
+  const cont = document.getElementById('resultadosBarrio');
+  if(resultados.length === 0){
+    cont.innerHTML = '<div class="empty">No hay opciones disponibles en esos barrios con los filtros dados.</div>';
+    return;
+  }
+
+  let html = `
+    <p class="muted"><b>${resultados.length}</b> opciones encontradas en: ${listaBarrios.join(', ')}</p>
+    <label style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);margin-bottom:12px;">
+      <input type="checkbox" id="selectAllBarrio" style="width:18px;height:18px;">
+      Seleccionar todas
+    </label>
+    <div id="propListBarrio"></div>
+    <div style="margin:14px 0;">
+      <label>Dividir en tandas de (opcional, deja vacío para un solo mensaje)</label>
+      <input type="number" id="tandaSizeBarrio" placeholder="Ej: 10" style="max-width:150px;">
+    </div>
+    <button class="gold" id="btnGenerarBarrio" style="margin-top:10px;">Generar mensaje de WhatsApp →</button>
+    <p class="muted hidden" id="avisoGenerarBarrio" style="margin-top:10px;color:var(--danger);"></p>
+    <div id="mensajeBarrioBox" class="hidden" style="margin-top:20px;">
+      <h2>Mensaje(s) listo(s) para copiar</h2>
+      <div id="mensajesContainerBarrio"></div>
+    </div>
+  `;
+  cont.innerHTML = html;
+
+  const listEl = document.getElementById('propListBarrio');
+  resultados.forEach((p, idx)=>{
+    const nidStr = String(p.nid);
+    const linkAuto = mapaLinks[nidStr] ? construirLinkTuficha(mapaLinks[nidStr]) : '';
+    const tieneBono = p.bonus_value && p.bonus_value > 0;
+    const div = document.createElement('div');
+    div.className = 'prop-card';
+    div.innerHTML = `
+      <input type="checkbox" id="chkB${idx}" data-idx="${idx}">
+      <div class="info">
+        <div class="titulo">${p.conjunto || p.titulo || 'Apartamento'} — ${p.barrio || ''}
+          ${tieneBono ? `<span class="badge" style="background:#D9EEE6;color:var(--success);">Bono $${fmt(p.bonus_value)}</span>` : ''}
+        </div>
+        <div class="precio">$${fmt(p.precio_venta)}</div>
+        <div class="meta">
+          ${p.area || '—'} m² · ${p.num_habitaciones || '—'} hab · ${p.banos || '—'} baños ·
+          ${p.garajes ? p.garajes + ' garaje(s)' : 'sin garaje'} ·
+          Piso ${p.num_piso || '—'} · Admin: $${fmt(p.costo_administracion)}
+        </div>
+        <div class="meta">Dirección: ${p.direccion || '—'} · Crédito aceptado: ${p.accepted_credit_type || 'consultar'}</div>
+        <a href="${p.url}" target="_blank">Ver en Habi (referencia, NID: ${p.nid}) ↗</a>
+        <div style="margin-top:8px;">
+          <label style="margin-bottom:3px;">
+            Link de ficha técnica (tuficha.co)
+            ${linkAuto ? '<span class="badge">Autocompletado ✓</span>' : '— pégalo aquí'}
+          </label>
+          <input type="text" class="linkFicha" id="linkB${idx}" placeholder="https://tuficha.co/inmueble/..." value="${linkAuto}">
+        </div>
+      </div>
+    `;
+    listEl.appendChild(div);
+  });
+
+  document.getElementById('selectAllBarrio').onchange = function(){
+    const marcar = this.checked;
+    resultados.forEach((p, idx)=>{
+      const chk = document.getElementById('chkB'+idx);
+      if(chk) chk.checked = marcar;
+    });
+  };
+
+  document.getElementById('btnGenerarBarrio').addEventListener('click', function(){
+    const seleccion = [];
+    let faltanLinks = [];
+    resultados.forEach((p, idx)=>{
+      const chk = document.getElementById('chkB'+idx);
+      if(chk && chk.checked){
+        const linkInput = document.getElementById('linkB'+idx);
+        const link = linkInput ? linkInput.value.trim() : '';
+        if(!link) faltanLinks.push(p.conjunto || p.titulo || ('propiedad ' + (idx+1)));
+        seleccion.push({...p, linkFicha: link});
+      }
+    });
+
+    const avisoEl = document.getElementById('avisoGenerarBarrio');
+    if(seleccion.length === 0){
+      avisoEl.innerHTML = '⚠️ Selecciona al menos una opción para incluir en el mensaje.';
+      avisoEl.classList.remove('hidden');
+      return;
+    }
+
+    const tandaSize = parseInt(document.getElementById('tandaSizeBarrio').value) || 0;
+    const tandas = dividirEnTandas(seleccion, tandaSize);
+    renderMensajes(tandas, listaBarrios.join(', '), 'mensajesContainerBarrio', 'mensajeBarrioFinal');
+    document.getElementById('mensajeBarrioBox').classList.remove('hidden');
+
+    if(faltanLinks.length > 0){
+      avisoEl.innerHTML = `⚠️ Falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
+      avisoEl.classList.remove('hidden');
+    } else {
+      avisoEl.classList.add('hidden');
+    }
+  });
+}
+
+document.getElementById('btnToStep3').addEventListener('click', function(){
+  const maxRaw = document.getElementById('presupMax').value;
+  const max = maxRaw ? parseFloat(maxRaw) : Infinity;
+  const min = parseFloat(document.getElementById('presupMin').value) || 0;
+  const hab = parseFloat(document.getElementById('habMin').value) || 0;
+  const areaMin = parseFloat(document.getElementById('areaMin').value) || 0;
+  const pisoTipo = document.getElementById('pisoTipo').value;
+  const pisoValor = parseFloat(document.getElementById('pisoValor').value);
+
+  function cumplePiso(p){
+    if(!pisoTipo || isNaN(pisoValor)) return true;
+    const piso = parseFloat(p.num_piso);
+    if(isNaN(piso)) return false;
+    if(pisoTipo === 'exacto') return piso === pisoValor;
+    if(pisoTipo === 'maximo') return piso <= pisoValor;
+    return true;
+  }
+
+  filtrados = inventario.filter(p=>{
+    const precio = p.precio_venta || 0;
+    const habs = p.num_habitaciones || 0;
+    const area = parseFloat(p.area) || 0;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && cumplePiso(p) && !separado;
+  });
+
+  const separadosExcluidos = inventario.filter(p=>{
+    const precio = p.precio_venta || 0;
+    const habs = p.num_habitaciones || 0;
+    const area = parseFloat(p.area) || 0;
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    return precio <= max && precio >= min && habs >= hab && area >= areaMin && cumplePiso(p) && separado;
+  }).length;
+
+  if(filtrados.length === 0){
+    document.getElementById('zonaList').innerHTML = '<div class="empty">No hay propiedades disponibles que cumplan ese presupuesto en el inventario cargado.</div>';
+    document.getElementById('totalMatches').innerText = '0 opciones';
+    goToStep(3);
+    return;
+  }
+
+  const conteo = {};
+  filtrados.forEach(p=>{
+    const zona = p.zona_grande || p.barrio || p.ciudad || 'Sin especificar';
+    conteo[zona] = (conteo[zona]||0)+1;
+  });
+  ultimoConteo = conteo;
+  ultimoTotal = filtrados.length;
+
+  const maxCount = Math.max(...Object.values(conteo));
+  const zonaListEl = document.getElementById('zonaList');
+  zonaListEl.innerHTML = '';
+  Object.entries(conteo).sort((a,b)=>b[1]-a[1]).forEach(([zona,count])=>{
+    const div = document.createElement('div');
+    div.className = 'zona-item';
+    div.innerHTML = `
+      <div class="name">${zona}</div>
+      <div class="bar-wrap"><div class="bar" style="width:${(count/maxCount*100)}%"></div></div>
+      <div class="count">${count} opciones</div>
+    `;
+    div.onclick = ()=>seleccionarZona(zona);
+    zonaListEl.appendChild(div);
+  });
+
+  document.getElementById('totalMatches').innerText = filtrados.length + ' en total'
+    + (separadosExcluidos > 0 ? ` (${separadosExcluidos} separados excluidos)` : '');
+  document.getElementById('mensajeZonasBox').classList.add('hidden');
+  goToStep(3);
+});
+
+document.getElementById('btnMensajeZonas').addEventListener('click', function(){
+  if(!ultimoTotal){
+    return;
+  }
+  const entradas = Object.entries(ultimoConteo).sort((a,b)=>b[1]-a[1]);
+  const grandes = entradas.filter(([,c])=>c>=2);
+  const chicas = entradas.filter(([,c])=>c<2);
+
+  let msg = `¡Perfecto! 🙌 Con esa información ya tengo varias opciones que se ajustan a lo que buscas.\n\n`;
+  msg += `Actualmente tengo ${ultimoTotal} apartamentos dentro de tu presupuesto, en estas zonas:\n\n`;
+
+  grandes.forEach(([zona,count])=>{
+    msg += `📍 ${zona} (${count} opciones)\n`;
+  });
+  if(chicas.length){
+    const nombres = chicas.map(([zona])=>zona).join(', ');
+    msg += `📍 ${nombres} (1 opción cada una)\n`;
+  }
+
+  msg += `\n¿Cuál de estas zonas te llama más la atención? Con esa te envío las opciones puntuales con fotos, precios y toda la info detallada 😊`;
+
+  document.getElementById('mensajeZonasFinal').value = msg;
+  document.getElementById('mensajeZonasBox').classList.remove('hidden');
+});
+
+document.getElementById('btnCopiarZonas').addEventListener('click', async function(){
+  const ta = document.getElementById('mensajeZonasFinal');
+  ta.select();
+  ta.setSelectionRange(0, 999999);
+  let copiado = false;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(ta.value);
+      copiado = true;
+    }
+  }catch(e){}
+  if(!copiado){
+    try{ copiado = document.execCommand('copy'); }catch(e){}
+  }
+  const ok = document.getElementById('copyOkZonas');
+  ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
+  ok.classList.remove('hidden');
+  if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
+});
+
+function seleccionarZona(zona){
+  zonaSeleccionada = zona;
+  propsZona = filtrados.filter(p=>(p.zona_grande || p.barrio || p.ciudad || 'Sin especificar') === zona);
+  propsZona.sort((a,b)=>(a.precio_venta||0)-(b.precio_venta||0));
+
+  document.getElementById('zonaTitulo').innerText = `4. Opciones en ${zona} (${propsZona.length})`;
+
+  const conAuto = propsZona.filter(p => mapaLinks[String(p.nid)]).length;
+  const resumenLinksEl = document.getElementById('resumenLinks');
+  resumenLinksEl.innerText = `${conAuto} de ${propsZona.length} ya tienen el link de tuficha.co autocompletado.`;
+
+  const listEl = document.getElementById('propList');
+  listEl.innerHTML = '';
+  propsZona.forEach((p, idx)=>{
+    const nidStr = String(p.nid);
+    const linkAuto = mapaLinks[nidStr] ? construirLinkTuficha(mapaLinks[nidStr]) : '';
+    const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+    const tieneBono = p.bonus_value && p.bonus_value > 0;
+    const div = document.createElement('div');
+    div.className = 'prop-card';
+    div.innerHTML = `
+      <input type="checkbox" id="chk${idx}" data-idx="${idx}">
+      <div class="info">
+        <div class="titulo">${p.conjunto || p.titulo || 'Apartamento'} — ${p.barrio || ''}
+          ${separado ? '<span class="badge" style="background:#F3D9D9;color:var(--danger);">Separado</span>' : ''}
+          ${tieneBono ? `<span class="badge" style="background:#D9EEE6;color:var(--success);">Bono $${fmt(p.bonus_value)}</span>` : ''}
+        </div>
+        <div class="precio">$${fmt(p.precio_venta)}</div>
+        <div class="meta">
+          ${p.area || '—'} m² · ${p.num_habitaciones || '—'} hab · ${p.banos || '—'} baños ·
+          ${p.garajes ? p.garajes + ' garaje(s)' : 'sin garaje'} ·
+          Piso ${p.num_piso || '—'} · Admin: $${fmt(p.costo_administracion)}
+        </div>
+        <div class="meta">Crédito aceptado: ${p.accepted_credit_type || 'consultar'}</div>
+        <a href="${p.url}" target="_blank">Ver en Habi (referencia, NID: ${p.nid}) ↗</a>
+        <div style="margin-top:8px;">
+          <label style="margin-bottom:3px;">
+            Link de ficha técnica (tuficha.co)
+            ${linkAuto ? '<span class="badge">Autocompletado ✓</span>' : '— pégalo aquí'}
+          </label>
+          <input type="text" class="linkFicha" id="link${idx}" placeholder="https://tuficha.co/inmueble/..." value="${linkAuto}">
+        </div>
+      </div>
+    `;
+    listEl.appendChild(div);
+  });
+
+  document.getElementById('selectAll').checked = false;
+  document.getElementById('selectAll').onchange = function(){
+    const marcar = this.checked;
+    propsZona.forEach((p, idx)=>{
+      const chk = document.getElementById('chk'+idx);
+      if(chk) chk.checked = marcar;
+    });
+  };
+
+  document.getElementById('mensajeBox').classList.add('hidden');
+  goToStep(4);
+}
+
+function construirBloqueOpcion(p, numero){
+  const separado = p.estado_del_inmueble === 'Separado' || p.current_state === 'set_aside';
+  const tieneBono = p.bonus_value && p.bonus_value > 0;
+  let bloque = `*Opción ${numero}: ${p.conjunto || p.titulo}*${separado ? ' ⚠️ (SEPARADO)' : ''}\n`;
+  bloque += `📍 ${p.barrio || ''}, ${p.ciudad || ''}\n`;
+  bloque += `💰 $${fmt(p.precio_venta)}\n`;
+  bloque += `📐 ${p.area || '—'} m² · 🛏️ ${p.num_habitaciones || '—'} hab · 🚿 ${p.banos || '—'} baños\n`;
+  bloque += `🏢 Piso ${p.num_piso || '—'}${p.garajes ? ' · 🚗 ' + p.garajes + ' garaje(s)' : ''}\n`;
+  bloque += `🧾 Administración: $${fmt(p.costo_administracion)}\n`;
+  if(tieneBono) bloque += `🟣 *¡Tiene bono de $${fmt(p.bonus_value)}!*\n`;
+  if(separado) bloque += `⚠️ Este inmueble está separado — confirmemos disponibilidad antes de avanzar\n`;
+  bloque += `🔗 ${p.linkFicha || '[PEGAR LINK DE TUFICHA.CO AQUÍ]'}\n\n`;
+  return bloque;
+}
+
+function dividirEnTandas(arr, tam){
+  if(!tam || tam >= arr.length) return [arr];
+  const tandas = [];
+  for(let i=0; i<arr.length; i+=tam) tandas.push(arr.slice(i, i+tam));
+  return tandas;
+}
+
+function renderMensajes(tandas, tituloBase, containerId='mensajesContainer', idPrefix='mensajeFinal'){
+  const cont = document.getElementById(containerId);
+  cont.innerHTML = '';
+  tandas.forEach((tanda, idx) => {
+    let msg = tandas.length > 1
+      ? `¡Aquí tienes ${tanda.length} opciones más (parte ${idx+1} de ${tandas.length}) que encontré para ti en *${tituloBase}* 🏡✨\n\n`
+      : `¡Aquí tienes ${tanda.length} opciones que encontré para ti en *${tituloBase}* 🏡✨\n\n`;
+    tanda.forEach((p, i) => { msg += construirBloqueOpcion(p, i+1); });
+    msg += `💳 Recibimos créditos hipotecarios, FNA, Caja Honor, te ayudamos a tramitar crédito.\n\n`;
+    msg += `¿Cuál de estas te gustaría conocer más a fondo? Con gusto te agendo una visita 🤝`;
+
+    const bloqueDiv = document.createElement('div');
+    bloqueDiv.style.marginBottom = '18px';
+    bloqueDiv.innerHTML = `
+      <p class="muted" style="font-weight:600;">${tandas.length > 1 ? `Mensaje ${idx+1} de ${tandas.length}` : 'Mensaje'}</p>
+      <textarea id="${idPrefix}${idx}">${msg}</textarea>
+      <button class="btnCopiarTanda" data-idx="${idx}" data-prefix="${idPrefix}">Copiar mensaje ${tandas.length > 1 ? (idx+1) : ''}</button>
+      <span class="copy-ok hidden" id="copyOk_${idPrefix}${idx}">✓ Copiado</span>
+    `;
+    cont.appendChild(bloqueDiv);
+  });
+
+  cont.querySelectorAll('.btnCopiarTanda').forEach(btn=>{
+    btn.addEventListener('click', async function(){
+      const idx = this.dataset.idx;
+      const prefix = this.dataset.prefix;
+      const ta = document.getElementById(prefix+idx);
+      ta.select();
+      ta.setSelectionRange(0, 999999);
+      let copiado = false;
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          await navigator.clipboard.writeText(ta.value);
+          copiado = true;
+        }
+      }catch(e){}
+      if(!copiado){ try{ copiado = document.execCommand('copy'); }catch(e){} }
+      const ok = document.getElementById('copyOk_'+prefix+idx);
+      ok.innerText = copiado ? '✓ Copiado' : 'No se pudo copiar automático — usa Ctrl+C';
+      ok.classList.remove('hidden');
+      if(copiado) setTimeout(()=>ok.classList.add('hidden'), 2000);
+    });
+  });
+}
+
+document.getElementById('btnGenerar').addEventListener('click', function(){
+  const seleccion = [];
+  let faltanLinks = [];
+  propsZona.forEach((p, idx)=>{
+    const chk = document.getElementById('chk'+idx);
+    if(chk && chk.checked){
+      const linkInput = document.getElementById('link'+idx);
+      const link = linkInput ? linkInput.value.trim() : '';
+      if(!link) faltanLinks.push(p.conjunto || p.titulo || ('propiedad ' + (idx+1)));
+      seleccion.push({...p, linkFicha: link});
+    }
+  });
+
+  const avisoEl = document.getElementById('avisoGenerar');
+
+  if(seleccion.length === 0){
+    avisoEl.innerHTML = '⚠️ Selecciona al menos una opción para incluir en el mensaje.';
+    avisoEl.classList.remove('hidden');
+    return;
+  }
+
+  const tandaSize = parseInt(document.getElementById('tandaSize').value) || 0;
+  const tandas = dividirEnTandas(seleccion, tandaSize);
+  renderMensajes(tandas, zonaSeleccionada);
+  document.getElementById('mensajeBox').classList.remove('hidden');
+
+  if(faltanLinks.length > 0){
+    avisoEl.innerHTML = `⚠️ Falta el link de tuficha.co para: ${faltanLinks.join(', ')}.`;
+    avisoEl.classList.remove('hidden');
+  } else {
+    avisoEl.classList.add('hidden');
+  }
+});
+
+function goToStep(n){
+  [1,2,3,4].forEach(i=>{
+    document.getElementById('step'+i).classList.toggle('hidden', i!==n);
+    const pill = document.getElementById('pill'+i);
+    pill.classList.remove('active','done');
+    if(i===n) pill.classList.add('active');
+    else if(i<n) pill.classList.add('done');
+  });
+}
+</script>
+</body>
+</html>
